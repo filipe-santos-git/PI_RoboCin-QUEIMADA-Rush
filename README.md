@@ -1,2 +1,2 @@
 # PI---projeto-trocar-nome-
-Projeto da cadeira de PI (programação Imperativa), que é um jogo programado usando a linguagem de programação C.
+Projeto para a cadeira de PI (Programação Imperativa) - jogo utilizando a linguagem de programação C.
