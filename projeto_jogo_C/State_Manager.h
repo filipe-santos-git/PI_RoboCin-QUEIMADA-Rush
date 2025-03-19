@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-char state = 'G';
+char state = 'M';
 
 #endif
 

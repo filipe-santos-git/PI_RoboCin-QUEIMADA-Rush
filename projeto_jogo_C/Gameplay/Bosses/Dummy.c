@@ -41,12 +41,12 @@ void CreateDummy()
 void DummyUpdate(float dt)
 {
     dummy.mana += 5 *dt;
-    if(dummy.mana >= 40)
+    if(dummy.mana >= 2.5)
     {
         dummy.mana = 0;
-        int x = GetRandomValue(arena.rec.x, arena.rec.x + arena.rec.width), y = GetRandomValue(arena.rec.y, arena.rec.y + arena.rec.height);
-        Vector2 pos = {x, y};
-        CreateBall_to_player(pos);
+        CreateBall_to_player();
+        CreateBall_to_player();
+        CreateBall_to_player();
     }
 
     BallUpdate(dt);

@@ -9,18 +9,16 @@
 
 typedef struct Ball
 {
-    int tam;
+    int tam, tempo;
     Vector2 pos;
     Vector2 dir;
     Color color;
     struct Ball *next;
     struct Ball *before;
+    float vel;
 }Ball;
 
 Ball *ball;
-
-
-
 
 #include "Ball.c"
 #endif
