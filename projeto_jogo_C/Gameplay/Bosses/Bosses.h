@@ -5,9 +5,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+typedef struct Boss
+{
+    float height, width, mana;
+    Vector2 pos;
+    Vector2 vel;
+    Vector2 shot_dir;
+    int ataque;
+    Color color;
+}Boss;
+Boss dummy;
 
-
-void CreateDummy();
 
 #include "Dummy.c"
 #endif

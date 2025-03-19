@@ -49,9 +49,11 @@ void MenuUpdate()
 
 void MenuDraw()
 {
-    strcpy(menu.Title, "Boss Hell!");
     ClearBackground(menu.BackGround_color);
-    DrawText(menu.Title, S_l/2 - 300, 90, 120, menu.Tiltle_color);
+    strcpy(menu.Title, "ACM Super Final Boss");
+    DrawText(menu.Title, S_l/2 - 625, 100, 110, menu.Tiltle_color);
+    strcpy(menu.Title, "Queimada Rush!!");
+    DrawText(menu.Title, S_l/2 - 250, 300, 70, menu.Tiltle_color);
     DrawRectangleRec(menu.button.rec, menu.button.color);
     DrawRectangleLinesEx(menu.button.rec, 5, RAYWHITE);
     DrawText(menu.button.text, menu.button.tx, menu.button.ty, 40, menu.button.text_color);

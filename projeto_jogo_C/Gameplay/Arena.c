@@ -17,7 +17,7 @@ void CreateArena()
     arena.rec.height = 500;
     arena.rec.width = 500;
     arena.rec.x -= arena.rec.width/2;
-    arena.rec.y -= arena.rec.height/2;
+    arena.rec.y -= arena.rec.height/2 - 60;
     arena.line_thick = 6;
 }
 

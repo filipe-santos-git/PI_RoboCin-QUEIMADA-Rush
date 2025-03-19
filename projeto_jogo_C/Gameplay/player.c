@@ -12,7 +12,9 @@ double time;
 
 void CreatePlayer()
 {
-    Vector2 pos = {arena.rec.x, arena.rec.y};
+    int S_l = GetScreenWidth();
+    int S_a = GetScreenHeight();
+    Vector2 pos = {S_l/2, S_a/2};
     Vector2 vel = {0, 0};
     Blanky.vel = vel;
     Blanky.pos = pos;
