@@ -3,6 +3,7 @@
 #include "General_Classes/Screen_Details.h"
 #include "General_Classes/Button.h"
 #include "State_Manager.h"
+#include "Gameplay/Ataques/Ball.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -58,7 +59,7 @@ void PauseUpdate()
        mouse.y > p_menu.rec.y && mouse.y < p_menu.rec.y + p_menu.rec.height)
     {
         p_menu.color = RED;
-        if(IsMouseButtonPressed(0)) {state = 'M';}
+        if(IsMouseButtonPressed(0)) {state = 'M'; DeEspawn();}
     } else {p_menu.color = RAYWHITE;}
 
     if(mouse.x > resume.rec.x && mouse.x < resume.rec.x + resume.rec.width &&

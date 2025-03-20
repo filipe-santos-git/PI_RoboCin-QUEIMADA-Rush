@@ -1,17 +1,22 @@
 #ifndef PLAYER
 #define PLAYER
 #include "raylib.h"
+#include "HP.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 typedef struct Player
 {
+    Vida hp;
     float height;
     float width;
     Vector2 pos;
     Vector2 vel;
     Color color;
+    int ready;
+    double now, time;
+    Color reflect;
 }Player;
 
 void GreenState();

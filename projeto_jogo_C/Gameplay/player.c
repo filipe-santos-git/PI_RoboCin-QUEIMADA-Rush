@@ -22,6 +22,14 @@ void CreatePlayer()
     Blanky.width = 20;
     Blanky.pos.x -= Blanky.width; Blanky.pos.y -= Blanky.height;
     Blanky.color = BLUE;
+    Blanky.ready = 1;
+    Blanky.reflect = SKYBLUE;
+
+    Blanky.hp.width = 10;
+    Blanky.hp.height = 25;
+    Blanky.hp.x = 1100;
+    Blanky.hp.y = 300;
+    Blanky.hp.color = LIME;
     time = GetTime();
 }
 
@@ -29,13 +37,15 @@ void CreatePlayer()
 
 void GreenState()
 {
-    double now = GetTime();
-    if(IsKeyPressed(32))
+    Blanky.now = GetTime();
+    if(IsKeyPressed(32) && Blanky.ready == 1)
     {
         Blanky.color = GREEN; 
-        time = GetTime();
+        Blanky.time = GetTime();
+        Blanky.ready = 0;
     }
-    else if(now > time + 0.3) {Blanky.color = BLUE;}
+    else if(Blanky.now > Blanky.time + 0.3) {Blanky.color = BLUE;}
+    if(Blanky.now > Blanky.time + 1) {Blanky.ready = 1;}
 }
 
 void ArenaColision()
@@ -66,12 +76,19 @@ void PlayerUpdate(float dt)
 
     ArenaColision();
     GreenState();
+
+    if(Blanky.hp.width > 10) {Blanky.hp.width = 10;}
     
     
 }
 
 void PlayerDraw()
 {
+    double a;
+    a = Blanky.now - Blanky.time;
+    if(a> 1) { a = 1; Blanky.reflect = GOLD;} else {Blanky.reflect = SKYBLUE;}
+    DrawRectangle(Blanky.hp.x, Blanky.hp.y- 50, a * 150, Blanky.hp.height, Blanky.reflect);
+    DrawRectangle(Blanky.hp.x, Blanky.hp.y, Blanky.hp.width *  15, Blanky.hp.height, Blanky.hp.color);
     DrawRectangle(Blanky.pos.x, Blanky.pos.y, Blanky.width, Blanky.height, Blanky.color);
 }
 

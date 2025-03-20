@@ -7,6 +7,77 @@
 #include <math.h>
 
 
+
+
+void CheckState()
+{
+    if(Blanky.color.r == GREEN.r &&
+       Blanky.color.g == GREEN.g &&
+       Blanky.color.b == GREEN.b &&
+       Blanky.color.a == GREEN.a )
+    {
+        //
+    }
+    else
+    {
+        Blanky.hp.width--;
+    }
+}
+
+
+
+
+void HitPlayer()
+{
+    Ball *temp = ball;
+    while(temp != NULL)
+    {
+        if(temp->pos.x > Blanky.pos.x && 
+            temp->pos.x < Blanky.pos.x + Blanky.width && 
+            temp->pos.y < Blanky.pos.y + Blanky.height &&
+            temp->pos.y > Blanky.pos.y) 
+        {
+            if(temp == ball)
+            {
+                ball = ball->next;
+                free(temp);
+                temp = NULL;
+            }
+            else
+            {
+                Ball *colide;
+                temp->before->next = temp->next;
+                if(temp->next != NULL) {temp->next->before = temp->before;}
+                colide = temp;
+                temp = temp->before;
+                free(colide);
+                
+            }
+            CheckState();
+        }
+        if(temp != NULL) {temp = temp->next;}
+
+        
+    }
+}
+
+
+
+
+void DeEspawn()
+{
+    Ball *temp = ball;
+    while(ball != NULL) 
+    { 
+        ball = ball->next;
+        free(temp);
+        temp = ball; 
+    }    
+}
+
+
+
+
 void BallArenaColision()
 {
     int S_l = GetScreenWidth(), S_a = GetScreenHeight();
@@ -85,9 +156,9 @@ void CreateBall_to_player()
     Color color = { 255, 161, 0, 255 };
     ball->color = color;
     ball->dir = Blanky.pos;
-    double a = 1/sqrt(1+(pow(((Blanky.pos.y - ball->pos.y)/(Blanky.pos.x - ball->pos.x)), 2)));
+    double a = 1/sqrt(1+(pow((((Blanky.pos.y + Blanky.height/2) - ball->pos.y)/((Blanky.pos.x + Blanky.width/2) - ball->pos.x)), 2)));
     ball->dir.x = a;
-    ball->dir.y = a * ((Blanky.pos.y - ball->pos.y)/(Blanky.pos.x - ball->pos.x));
+    ball->dir.y = a * (((Blanky.pos.y + Blanky.height/2) - ball->pos.y)/((Blanky.pos.x + Blanky.width/2) - ball->pos.x));
     if(ball->pos.x > Blanky.pos.x) {ball->dir.x = -ball->dir.x;}
     if(ball->pos.x > Blanky.pos.x) {ball->dir.y = -ball->dir.y;}
 
@@ -110,6 +181,7 @@ void BallUpdate(float dt)
         temp = temp->next;
     }
     BallArenaColision();
+    HitPlayer();
 }
 
 void BallDraw()

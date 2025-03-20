@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "Main_Menu.h"
 #include "General_Classes/Screen_Details.h"
+#include "General_Classes/Button.h"
 #include "State_Manager.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,17 +23,13 @@ void StartButton()
     menu.button.rec.x -= menu.button.rec.width/2;
     menu.button.tx = menu.button.rec.x + menu.button.rec.width/2 - 55;
     menu.button.ty = menu.button.rec.y + menu.button.rec.height/4;
-    menu.button.text_color = BLACK;
+    menu.button.text_color = RAYWHITE;
+    menu.button.color = BLACK;
+    Color b, t;
+    b = menu.button.color;
+    t = menu.button.text_color;
 
-    Vector2 mouse = GetMousePosition();
-    if(mouse.x >= menu.button.rec.x && mouse.x <= menu.button.rec.x + menu.button.rec.width 
-    && mouse.y >= menu.button.rec.y && mouse.y <= menu.button.rec.y + menu.button.rec.height)
-    {
-        menu.button.color = RAYWHITE;
-        menu.button.text_color = BLACK;
-        if(IsMouseButtonPressed(0)){ state = 'G';}
-    }
-    else{ menu.button.color = BLACK; menu.button.text_color = RAYWHITE;}
+    Mouse_Button(&menu.button, 'G', b, t);
 }
 
 

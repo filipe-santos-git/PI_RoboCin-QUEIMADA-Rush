@@ -7,6 +7,7 @@
 #include "Main_menu/Main_Menu.h"
 #include "Screen_Management.c"
 #include "Pause/Pause_Menu.h"
+#include "GameOver/GameOver.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,6 +32,7 @@ int main()
     InitWindow(S_l, S_a, "raylib_1");
     //ToggleBorderlessWindowed();
     SetTargetFPS(300);
+    CreateGameOver();
     CreateDummy();
     CreatePause();
     CreateArena();
@@ -46,7 +48,7 @@ int main()
 
         BeginDrawing();
             ScreenDraw();
-            DrawFPS(0, 0);
+            DrawFPS(10, 10);
         EndDrawing();
     }
 

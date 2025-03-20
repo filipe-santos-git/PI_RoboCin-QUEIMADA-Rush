@@ -15,5 +15,5 @@ typedef struct Button
     Color text_color;
 }Button;
 
-
+#include "Button.c"
 #endif
