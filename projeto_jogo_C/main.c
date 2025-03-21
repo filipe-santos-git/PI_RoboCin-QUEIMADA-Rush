@@ -11,8 +11,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../assets/audios/audios_effects.h"
 
-
+#define NUM_AUDIOS 4
 //----------------------------------------------------------------------------------
 // Local Functions Declaration
 //----------------------------------------------------------------------------------
@@ -24,19 +25,28 @@
 //----------------------------------------------------------------------------------
 int main()
 {
+   
     // Initialization
     //--------------------------------------------------------------------------------------
     S_l = GetScreenHeight();
     S_a = GetScreenWidth();
 
+    //Init audio
+    //------------------------------------------------------------------------------------
+    InitAudioDevice();
+    SetMasterVolume(1.0f);  // Define system to max volume
+    const char *filenames [NUM_AUDIOS] = {"assets/audios/effects/bola.wav","assets/audios/effects/boss-entrada.wav","assets/audios/effects/soco.wav","assets/audios/effects/vida.wav"};
+    Sound effects[NUM_AUDIOS];
+    LoadSounds(effects, filenames, NUM_AUDIOS);
+
     InitWindow(S_l, S_a, "raylib_1");
     //ToggleBorderlessWindowed();
-    SetTargetFPS(300);
+    SetTargetFPS(60);
     CreateGameOver();
     CreateDummy();
     CreatePause();
     CreateArena();
-    CreatePlayer(); 
+    CreatePlayer(effects[2]); 
 
 
     
@@ -53,10 +63,11 @@ int main()
     }
 
 
-   
-   
-    CloseWindow();                
+   //Unload sound data
+    UnloadSounds(effects, NUM_AUDIOS); 
+    CloseAudioDevice();  
 
-
+    CloseWindow();  
+               
     return 0;
 }

@@ -10,8 +10,9 @@ Player Blanky;
 double time;
 
 
-void CreatePlayer()
+void CreatePlayer(Sound som_verde)
 {
+    Blanky.som_verde = som_verde;
     int S_l = GetScreenWidth();
     int S_a = GetScreenHeight();
     Vector2 pos = {S_l/2, S_a/2};
@@ -39,10 +40,12 @@ void GreenState()
 {
     Blanky.now = GetTime();
     if(IsKeyPressed(32) && Blanky.ready == 1)
-    {
+    {   
+        PlaySound(Blanky.som_verde);
         Blanky.color = GREEN; 
         Blanky.time = GetTime();
         Blanky.ready = 0;
+
     }
     else if(Blanky.now > Blanky.time + 0.3) {Blanky.color = BLUE;}
     if(Blanky.now > Blanky.time + 1) {Blanky.ready = 1;}
@@ -63,6 +66,7 @@ void ArenaColision()
 
 void PlayerUpdate(float dt)
 {
+    PlaySound(Blanky.som_verde);
     float vel = 300;
     if(IsKeyDown(65)) {Blanky.vel.x = -vel;}
     else if(IsKeyDown(68)) {Blanky.vel.x = vel;}

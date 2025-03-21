@@ -5,7 +5,10 @@
             "includePath": [
                 "C:/msys64/ucrt64/include/**",
                 "C:/raylib/raylib/src/**",
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/assets/audios",
+                "D:/Users/fsc5/Desktop/PI---projeto-trocar-nome-/projeto_jogo_C/assets/audios"
+                
             ],
             "defines": [
                 "_DEBUG",

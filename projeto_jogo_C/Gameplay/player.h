@@ -1,10 +1,14 @@
 #ifndef PLAYER
 #define PLAYER
+
 #include "raylib.h"
 #include "HP.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../assets/audios/audio_effects.h"
+
+
 
 typedef struct Player
 {
@@ -17,6 +21,7 @@ typedef struct Player
     int ready;
     double now, time;
     Color reflect;
+    Sound som_verde;
 }Player;
 
 void GreenState();
