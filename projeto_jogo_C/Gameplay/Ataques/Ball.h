@@ -15,10 +15,15 @@ typedef struct Ball
     Color color;
     struct Ball *next;
     struct Ball *before;
-    float vel;
+    float vel, acel;
+    double C, N;
 }Ball;
 
 Ball *ball;
+Ball *r_ball;
+Ball *s_ball;
 
+#include "R_Ball.c"
 #include "Ball.c"
+#include "Sen_ball.c"
 #endif

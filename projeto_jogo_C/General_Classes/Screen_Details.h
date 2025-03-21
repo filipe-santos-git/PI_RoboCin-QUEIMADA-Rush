@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int S_l;
-int S_a;
+int S_l = 1920;
+int S_a = 1080;
 
 #endif

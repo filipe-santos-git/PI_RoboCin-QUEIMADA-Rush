@@ -59,7 +59,7 @@ void PauseUpdate()
        mouse.y > p_menu.rec.y && mouse.y < p_menu.rec.y + p_menu.rec.height)
     {
         p_menu.color = RED;
-        if(IsMouseButtonPressed(0)) {state = 'M'; DeEspawn();}
+        if(IsMouseButtonPressed(0)) {state = 'M'; DeEspawn(); DeEspawnR_Ball();}
     } else {p_menu.color = RAYWHITE;}
 
     if(mouse.x > resume.rec.x && mouse.x < resume.rec.x + resume.rec.width &&

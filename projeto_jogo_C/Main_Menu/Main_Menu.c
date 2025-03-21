@@ -12,12 +12,11 @@ Menu menu;
 
 void StartButton()
 {
-    S_a = GetScreenHeight();
-    S_l = GetScreenWidth();
+    
     strcpy(menu.button.text, "Start");
 
     menu.button.rec.x = S_l/2;
-    menu.button.rec.y = 500;
+    menu.button.rec.y = S_a/2;
     menu.button.rec.height = 100;
     menu.button.rec.width = 300;
     menu.button.rec.x -= menu.button.rec.width/2;

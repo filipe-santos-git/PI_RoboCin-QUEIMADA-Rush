@@ -17,8 +17,10 @@ typedef struct Player
     int ready;
     double now, time;
     Color reflect;
+    Rectangle rec;
 }Player;
 
+Player Blanky;
 void GreenState();
 void ArenaColision();
 void CreatePlayer();

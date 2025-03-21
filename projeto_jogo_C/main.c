@@ -26,12 +26,10 @@ int main()
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    S_l = GetScreenHeight();
-    S_a = GetScreenWidth();
 
     InitWindow(S_l, S_a, "raylib_1");
     //ToggleBorderlessWindowed();
-    SetTargetFPS(300);
+    //SetTargetFPS(60);
     CreateGameOver();
     CreateDummy();
     CreatePause();

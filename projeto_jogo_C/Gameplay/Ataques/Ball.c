@@ -16,7 +16,7 @@ void CheckState()
        Blanky.color.b == GREEN.b &&
        Blanky.color.a == GREEN.a )
     {
-        //
+        CreateR_ball();
     }
     else
     {
@@ -54,6 +54,7 @@ void HitPlayer()
                 
             }
             CheckState();
+
         }
         if(temp != NULL) {temp = temp->next;}
 
@@ -106,7 +107,7 @@ void BallArenaColision()
 
             }
         }
-        if(temp != NULL) {temp = temp->next;}
+        if(temp != NULL) {temp = temp->next;} else {temp = ball;}
     }
 }
 
@@ -161,12 +162,6 @@ void CreateBall_to_player()
     ball->dir.y = a * (((Blanky.pos.y + Blanky.height/2) - ball->pos.y)/((Blanky.pos.x + Blanky.width/2) - ball->pos.x));
     if(ball->pos.x > Blanky.pos.x) {ball->dir.x = -ball->dir.x;}
     if(ball->pos.x > Blanky.pos.x) {ball->dir.y = -ball->dir.y;}
-
-
-
-
-    
-
 }
 
 
@@ -182,6 +177,7 @@ void BallUpdate(float dt)
     }
     BallArenaColision();
     HitPlayer();
+    R_BallUpdate(dt);
 }
 
 void BallDraw()
@@ -191,5 +187,7 @@ void BallDraw()
     {
         DrawCircle(temp->pos.x, temp->pos.y, temp->tam, temp->color);
         temp = temp->next;
+        
     }
+    R_BallDraw();
 }

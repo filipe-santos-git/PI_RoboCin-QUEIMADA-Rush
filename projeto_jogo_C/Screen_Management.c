@@ -34,7 +34,7 @@ void ScreenUpdate(float dt)
             SetExitKey(261);
             if(IsKeyPressed(256)) {state = 'P';}
             PlayerUpdate(dt);
-            if(Blanky.hp.width <= 0) {DeEspawn(); state = 'O';}
+            if(Blanky.hp.width <= 0) {DeEspawn(); DeEspawnR_Ball(); state = 'O';}
             DummyUpdate(dt);
             break;
         case'P':
@@ -42,6 +42,7 @@ void ScreenUpdate(float dt)
             PauseUpdate();
             break;
         case'O':
+            if(IsKeyPressed(256)) {state = 'M';}
             start_game = 0;
             GameOverUpdate();
             break;

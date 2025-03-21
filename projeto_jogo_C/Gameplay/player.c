@@ -6,7 +6,7 @@
 #include <string.h>
 
 
-Player Blanky;
+
 double time;
 
 
@@ -31,6 +31,9 @@ void CreatePlayer()
     Blanky.hp.y = 300;
     Blanky.hp.color = LIME;
     time = GetTime();
+
+    
+
 }
 
 
@@ -38,13 +41,13 @@ void CreatePlayer()
 void GreenState()
 {
     Blanky.now = GetTime();
-    if(IsKeyPressed(32) && Blanky.ready == 1)
+    if((IsKeyPressed(32) || IsMouseButtonPressed(0)) && Blanky.ready == 1)
     {
         Blanky.color = GREEN; 
         Blanky.time = GetTime();
         Blanky.ready = 0;
     }
-    else if(Blanky.now > Blanky.time + 0.3) {Blanky.color = BLUE;}
+    else if(Blanky.now > Blanky.time + 0.5) {Blanky.color = BLUE;}
     if(Blanky.now > Blanky.time + 1) {Blanky.ready = 1;}
 }
 
@@ -63,6 +66,9 @@ void ArenaColision()
 
 void PlayerUpdate(float dt)
 {
+    Rectangle rec = {Blanky.pos.x, Blanky.pos.y, Blanky.width, Blanky.height};
+    Blanky.rec = rec;
+
     float vel = 300;
     if(IsKeyDown(65)) {Blanky.vel.x = -vel;}
     else if(IsKeyDown(68)) {Blanky.vel.x = vel;}
@@ -80,6 +86,7 @@ void PlayerUpdate(float dt)
     if(Blanky.hp.width > 10) {Blanky.hp.width = 10;}
     
     
+    
 }
 
 void PlayerDraw()
@@ -90,6 +97,7 @@ void PlayerDraw()
     DrawRectangle(Blanky.hp.x, Blanky.hp.y- 50, a * 150, Blanky.hp.height, Blanky.reflect);
     DrawRectangle(Blanky.hp.x, Blanky.hp.y, Blanky.hp.width *  15, Blanky.hp.height, Blanky.hp.color);
     DrawRectangle(Blanky.pos.x, Blanky.pos.y, Blanky.width, Blanky.height, Blanky.color);
+    
 }
 
 
