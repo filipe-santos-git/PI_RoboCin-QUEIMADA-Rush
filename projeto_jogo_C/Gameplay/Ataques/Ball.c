@@ -9,6 +9,7 @@
 
 
 
+
 void CheckState()
 {
     if(Blanky.color.r == GREEN.r &&
@@ -20,7 +21,10 @@ void CheckState()
     }
     else
     {
-        Blanky.hp.width--;
+        Blanky.hp.width -= 0.5 ;
+        Blanky.hitted = GetTime();
+        Blanky.color = RAYWHITE;
+        Blanky.hit = 1;
     }
 }
 
@@ -152,16 +156,16 @@ void CreateBall_to_player()
     }
     if(ball == NULL) {exit(1);}
     ball->pos = pos;
-    ball->vel = 300;
+    ball->vel = 100*GetRandomValue(2, 5);;
     ball->tam = 10;
     Color color = { 255, 161, 0, 255 };
     ball->color = color;
     ball->dir = Blanky.pos;
-    double a = 1/sqrt(1+(pow((((Blanky.pos.y + Blanky.height/2) - ball->pos.y)/((Blanky.pos.x + Blanky.width/2) - ball->pos.x)), 2)));
-    ball->dir.x = a;
-    ball->dir.y = a * (((Blanky.pos.y + Blanky.height/2) - ball->pos.y)/((Blanky.pos.x + Blanky.width/2) - ball->pos.x));
-    if(ball->pos.x > Blanky.pos.x) {ball->dir.x = -ball->dir.x;}
-    if(ball->pos.x > Blanky.pos.x) {ball->dir.y = -ball->dir.y;}
+    Vector2 player_pos = {Blanky.pos.x + Blanky.width/2, Blanky.pos.y + Blanky.height/2}; 
+    Vector2 dir = Vector2Normalize(Vector2Subtract(ball->pos, player_pos));
+    dir.x = -dir.x;
+    dir.y = -dir.y;
+    ball->dir = dir;
 }
 
 
@@ -171,8 +175,8 @@ void BallUpdate(float dt)
     Ball *temp = ball;
     while(temp != NULL)
     {
-        temp->pos.x += temp->dir.x * dt * ball->vel;
-        temp->pos.y += temp->dir.y * dt * ball->vel;
+        temp->pos.x += temp->dir.x * dt * temp->vel;
+        temp->pos.y += temp->dir.y * dt * temp->vel;
         temp = temp->next;
     }
     BallArenaColision();

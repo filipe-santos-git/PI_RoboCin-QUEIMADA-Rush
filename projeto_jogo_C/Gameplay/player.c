@@ -45,9 +45,13 @@ void GreenState()
     {
         Blanky.color = GREEN; 
         Blanky.time = GetTime();
+        Blanky.hit = 0;
         Blanky.ready = 0;
     }
-    else if(Blanky.now > Blanky.time + 0.5) {Blanky.color = BLUE;}
+    else if(Blanky.hit && GetTime() > Blanky.hitted + 0.3 )
+    {Blanky.color = BLUE; Blanky.hit = 0;}
+    else if(Blanky.hit != 1 && Blanky.now > Blanky.time + 0.5)
+    {Blanky.color = BLUE;}
     if(Blanky.now > Blanky.time + 1) {Blanky.ready = 1;}
 }
 
@@ -84,6 +88,8 @@ void PlayerUpdate(float dt)
     GreenState();
 
     if(Blanky.hp.width > 10) {Blanky.hp.width = 10;}
+
+    
     
     
     

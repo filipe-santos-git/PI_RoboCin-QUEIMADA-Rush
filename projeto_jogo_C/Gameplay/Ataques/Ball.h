@@ -17,6 +17,10 @@ typedef struct Ball
     struct Ball *before;
     float vel, acel;
     double C, N;
+
+    //para a s_ball:
+    float s_b_a, s_b_f;
+    int i;
 }Ball;
 
 Ball *ball;

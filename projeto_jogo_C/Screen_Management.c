@@ -30,11 +30,12 @@ void ScreenUpdate(float dt)
 
             break;
         case'G':
-            if(start_game == 0) {Blanky.hp.width = 10; start_game++;}
+            if(start_game == 0) {dummy.hp = 70; Blanky.hp.width = 10; start_game++;}
             SetExitKey(261);
             if(IsKeyPressed(256)) {state = 'P';}
             PlayerUpdate(dt);
-            if(Blanky.hp.width <= 0) {DeEspawn(); DeEspawnR_Ball(); state = 'O';}
+            if(Blanky.hp.width <= 0) {DeEspawn(); DeEspawnR_Ball(); DeEspawn_S(); state = 'O';}
+            if(dummy.hp <= 0) {DeEspawn(); DeEspawnR_Ball(); DeEspawn_S(); state = 'M';}
             DummyUpdate(dt);
             break;
         case'P':
@@ -44,6 +45,8 @@ void ScreenUpdate(float dt)
         case'O':
             if(IsKeyPressed(256)) {state = 'M';}
             start_game = 0;
+            dummy.start_attack = GetTime();
+            N_AT = GetRandomValue(1,2);
             GameOverUpdate();
             break;
         default: break;

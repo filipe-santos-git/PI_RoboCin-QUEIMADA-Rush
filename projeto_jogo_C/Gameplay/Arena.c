@@ -10,8 +10,8 @@
 
 void CreateArena()
 {
-    const int center_x = GetScreenWidth()/2;
-    const int center_y = GetScreenHeight()/2;
+    const int center_x = S_l/2;
+    const int center_y = S_a/2;
     arena.rec.x = center_x;
     arena.rec.y = center_y;
     arena.rec.height = 500;

@@ -9,7 +9,8 @@
 
 
 
-
+int lado;
+double tempo;
 void S_BallArenaColision()
 {
     Ball *temp = s_ball;
@@ -55,16 +56,14 @@ void DeEspawn_S()
 }
 
 
+
 void CalcularFunc_S(Ball *temp)
 {
-    /*Vector2 boss_pos = {dummy.pos.x + dummy.width/2, dummy.pos.y + dummy.height/2}; 
-    Vector2 dir = Vector2Normalize(Vector2Subtract(s_ball->pos, boss_pos));
-    dir.x = -dir.x;
-    dir.y = -dir.y;
-    s_ball->dir = dir;*/
-
-    temp->dir.x = -1;
-    temp->dir.y = M_PI *(cos(((M_PI/2) * (GetTime() - temp->C))*5)) / 5;
+    Vector2 pos = {Blanky.pos.x +Blanky.width/2, Blanky.pos.y + Blanky.height/2}; 
+    float angle = temp->i* Vector2Angle(temp->pos, pos);
+    temp->dir.x = temp->i;
+    temp->dir.y = M_PI *(cos(((M_PI/2) * (GetTime() - temp->C))*(temp->s_b_a))) * 6;
+    temp->dir = Vector2Rotate(temp->dir, angle);
     temp->dir = Vector2Normalize(temp->dir);
 
 }
@@ -72,7 +71,7 @@ void CalcularFunc_S(Ball *temp)
 
 
 
-void CreateS_ball()
+void CreateS_ball(int X)
 {
 
     Ball *temp;
@@ -89,11 +88,14 @@ void CreateS_ball()
         s_ball = temp;
     }
     if(s_ball == NULL) {exit(1);}
-    s_ball->pos.x = 1600;
+    s_ball->pos.x = X;
+    if(s_ball->pos.x < S_l/2) {s_ball->i = 1;} else {s_ball->i = -1;}
     s_ball->pos.y = S_a/2;
     s_ball->vel = 900;
     s_ball->tam = 10;
     s_ball->acel = 4;
+    s_ball->s_b_a = 3;
+    s_ball->s_b_f = 5;
     Color color = ORANGE;
     s_ball->color = color;
     s_ball->dir = dummy.pos;

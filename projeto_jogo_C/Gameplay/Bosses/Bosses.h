@@ -7,7 +7,7 @@
 
 typedef struct Boss
 {
-    float height, width, mana, mana2;
+    float height, width;
     Vector2 pos;
     Vector2 vel;
     Vector2 shot_dir;
@@ -15,6 +15,9 @@ typedef struct Boss
     Color color;
     Rectangle rec;
     int hp, hit;
+    double hitted, mana;
+
+    double start_attack;
 }Boss;
 Boss dummy;
 

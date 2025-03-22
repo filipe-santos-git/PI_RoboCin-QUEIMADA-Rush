@@ -18,6 +18,9 @@ typedef struct Player
     double now, time;
     Color reflect;
     Rectangle rec;
+
+    double hitted;
+    int hit;
 }Player;
 
 Player Blanky;

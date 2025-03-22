@@ -9,6 +9,12 @@
 #include <math.h>
 
 
+void HitDummy()
+{
+    dummy.hp--;
+    dummy.hitted = GetTime();
+    dummy.color = RAYWHITE;
+}
 
 void CalcularFunc()
 {
@@ -80,7 +86,8 @@ void R_BallUpdate(float dt)
                 free(colide);
 
             }
-            dummy.hit = 1;
+            HitDummy();
+            
 
         }
         if(temp != NULL) {temp = temp->next;} else {temp = r_ball;}
