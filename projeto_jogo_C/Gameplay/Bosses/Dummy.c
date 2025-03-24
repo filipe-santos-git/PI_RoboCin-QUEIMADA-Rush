@@ -32,16 +32,24 @@ double EscolherAtaque(int num,  double mana)
         {
             mana = 0;
             CreateS_ball(1600);
-            //CreateS_ball(400);
         }
+        break;
     
+    case 3:
+        if(mana > 0.4)
+        {
+            mana = 0;
+            CreateB_Ball();
+        }
     default:
         break;
     }
     return mana;
 }
-
+int last_a;
 int N_AT;
+
+int health;
 void CreateDummy()
 {
     dummy.pos.x = S_l/2;
@@ -50,28 +58,36 @@ void CreateDummy()
     dummy.vel.y = 0;
     dummy.mana = 0;
     dummy.ataque = 0;
-    dummy.height = 80;
+    dummy.height = 110;
     dummy.width = 300;
     dummy.pos.x -= dummy.width/2;
     dummy.pos.y -= dummy.height/2;
     dummy.color = RED;
     Rectangle rec = {dummy.pos.x, dummy.pos.y, dummy.width, dummy.height};
     dummy.rec = rec;
-    dummy.hp = 70;
+    dummy.hp = 200;
+    health = dummy.hp;
     dummy.start_attack = GetTime();
-    N_AT = GetRandomValue(1,2);
+    N_AT = GetRandomValue(1,3);
+    last_a = N_AT;
 
 }
 
 
 void DummyUpdate(float dt)
 {
-    int var;
+    int var = 0;
+    switch (last_a)
+    {
+    case 1: var = 3; break;
+    case 2: var = 7; break;
+    case 3: var = 5; break;
+    default:
+        break;
+    }
 
     dummy.mana += 5 *dt;
-    if(N_AT == 2) {var = 2;}
-    else {var = 7;}
-    if(GetTime() > 23 -(10 - var)  + dummy.start_attack) {N_AT = GetRandomValue(1,2); dummy.start_attack = GetTime();}
+    if(GetTime() > 23 -(10 - var)  + dummy.start_attack) {last_a = N_AT; N_AT = GetRandomValue(1,3); dummy.start_attack = GetTime();}
     else if(GetTime() > var + dummy.start_attack) 
     {dummy.mana = EscolherAtaque(N_AT, dummy.mana);}
     
@@ -79,10 +95,11 @@ void DummyUpdate(float dt)
 
     BallUpdate(dt);
     S_BallUpdate(dt);
+    B_BallUpdate(dt);
     if(GetTime() > dummy.hitted + 0.3)
     {
-        if(dummy.hp > 35){dummy.color = RED;}
-        else if(dummy.hp >= 10) {dummy.color = ORANGE;}
+        if(dummy.hp > health/2){dummy.color = RED;}
+        else if(dummy.hp >= health/4) {dummy.color = ORANGE;}
         else {dummy.color.a = 128;}
     }
 
@@ -100,6 +117,7 @@ void DummyDraw()
     DrawRectangle(dummy.pos.x, dummy.pos.y, dummy.width, dummy.height, dummy.color);
     BallDraw();
     S_BallDraw();
+    B_BallDraw();
 }
 
 

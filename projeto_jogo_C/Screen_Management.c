@@ -24,30 +24,39 @@ void ScreenUpdate(float dt)
     switch(State)
     {
         case'M':
+            ShowCursor();
             SetExitKey(256);
             MenuUpdate();
             start_game = 0;
 
             break;
         case'G':
-            if(start_game == 0) {dummy.hp = 70; Blanky.hp.width = 10; start_game++;}
+            HideCursor();
+            SetMousePosition(S_l, 0);
+            sprintf(arena.time, "%.f", GetTime() - arena.TimeGame);
+            if(start_game == 0) {dummy.hp = 200; Blanky.hp.width = 10; start_game++;}
             SetExitKey(261);
             if(IsKeyPressed(256)) {state = 'P';}
             PlayerUpdate(dt);
-            if(Blanky.hp.width <= 0) {DeEspawn(); DeEspawnR_Ball(); DeEspawn_S(); state = 'O';}
-            if(dummy.hp <= 0) {DeEspawn(); DeEspawnR_Ball(); DeEspawn_S(); state = 'M';}
+            if(Blanky.hp.width <= 0) {DeEspawn(); DeEspawnR_Ball(); DeEspawn_S(); DeEspawnB_Ball(); state = 'O';}
+            if(dummy.hp <= 0) {DeEspawn(); DeEspawnR_Ball(); DeEspawn_S(); DeEspawnB_Ball(); state = 'M';}
             DummyUpdate(dt);
             break;
         case'P':
+            ShowCursor();
+            arena.TimeGame = GetTime();
             if(IsKeyPressed(256)) {state = 'G';}
             PauseUpdate();
             break;
         case'O':
+            ShowCursor();
             if(IsKeyPressed(256)) {state = 'M';}
             start_game = 0;
             dummy.start_attack = GetTime();
             N_AT = GetRandomValue(1,2);
             GameOverUpdate();
+            break;
+        case'W':
             break;
         default: break;
 

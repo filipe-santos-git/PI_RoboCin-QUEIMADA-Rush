@@ -10,6 +10,8 @@ typedef struct Arena
     Rectangle rec;
     float line_thick;
     Color color;
+    double TimeGame;
+    char time[10];
 }Arena;
 
 Arena arena;

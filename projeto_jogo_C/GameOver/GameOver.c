@@ -52,4 +52,5 @@ void GameOverDraw()
     ButtonDraw(&main_menu);
     ButtonDraw(&over_resume);
     DrawText("Game Over", S_l/2 - 270, 300, 100, RED);
+    DrawText(arena.time, S_l/2 -60, S_a/2, 140, RAYWHITE);
 }

@@ -12,15 +12,16 @@ typedef struct Player
     float height;
     float width;
     Vector2 pos;
-    Vector2 vel;
+    Vector2 dir;
+    int vel;
     Color color;
     int ready;
-    double now, time;
+    double now, time, dash_t;
     Color reflect;
     Rectangle rec;
 
     double hitted;
-    int hit;
+    int hit, dash_ready;
 }Player;
 
 Player Blanky;

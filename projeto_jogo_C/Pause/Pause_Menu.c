@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "Pause_Menu.h"
 #include "General_Classes/Screen_Details.h"
+#include "Gameplay/Arena.h"
 #include "General_Classes/Button.h"
 #include "State_Manager.h"
 #include "Gameplay/Ataques/Ball.h"
@@ -59,7 +60,7 @@ void PauseUpdate()
        mouse.y > p_menu.rec.y && mouse.y < p_menu.rec.y + p_menu.rec.height)
     {
         p_menu.color = RED;
-        if(IsMouseButtonPressed(0)) {state = 'M'; DeEspawn(); DeEspawnR_Ball(); DeEspawn_S();}
+        if(IsMouseButtonPressed(0)) {state = 'M'; DeEspawn(); DeEspawnR_Ball(); DeEspawn_S(); DeEspawnB_Ball();}
     } else {p_menu.color = RAYWHITE;}
 
     if(mouse.x > resume.rec.x && mouse.x < resume.rec.x + resume.rec.width &&
@@ -77,5 +78,6 @@ void PauseDraw()
     DrawRectangleRec(p_menu.rec, p_menu.color);
     DrawRectangleRec(resume.rec, resume.color);
     DrawText(pause.Text, pause.tx, pause.ty, pause.fonte_tam, pause.text_color);
+    DrawText(arena.time, 20, 30, 40, GREEN);
 
 }

@@ -16,7 +16,7 @@ void S_BallArenaColision()
     Ball *temp = s_ball;
     while(temp != NULL)
     {
-        if(temp->pos.x < 5 || 
+        if(temp->pos.x < 300 || 
             temp->pos.x > S_l - 5|| 
             temp->pos.y < 5||
             temp->pos.y > S_a -5) 
@@ -126,9 +126,9 @@ void S_BallUpdate(float dt)
         if(CheckCollisionCircleRec(temp->pos, temp->tam, Blanky.rec))
         {
             
-            if(temp == ball)
+            if(temp == s_ball)
             {
-                ball = ball->next;
+                s_ball = s_ball->next;
                 free(temp);
                 temp = NULL;
             }

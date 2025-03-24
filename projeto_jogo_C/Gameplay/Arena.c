@@ -21,8 +21,13 @@ void CreateArena()
     arena.line_thick = 6;
 }
 
+
+
+
+
 void ArenaDraw()
 {
     ClearBackground(BLACK);
     DrawRectangleLinesEx(arena.rec, arena.line_thick, RAYWHITE);
+    DrawText(arena.time, 20, 50, 90, YELLOW);
 }
