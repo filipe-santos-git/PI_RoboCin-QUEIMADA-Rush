@@ -118,7 +118,7 @@ void BallArenaColision()
 
 
 
-void CreateBall_to_player()
+void CreateBall_to_player(int vel, int type)
 {
     Vector2 pos;
     int qual_borda = GetRandomValue(1, 4);
@@ -156,7 +156,7 @@ void CreateBall_to_player()
     }
     if(ball == NULL) {exit(1);}
     ball->pos = pos;
-    ball->vel = 100*GetRandomValue(2, 5);;
+    ball->vel = 100 * vel;
     ball->tam = 10;
     Color color = { 255, 161, 0, 255 };
     ball->color = color;

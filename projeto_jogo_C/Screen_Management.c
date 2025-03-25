@@ -34,12 +34,26 @@ void ScreenUpdate(float dt)
             HideCursor();
             SetMousePosition(S_l, 0);
             sprintf(arena.time, "%.f", GetTime() - arena.TimeGame);
-            if(start_game == 0) {dummy.hp = 200; Blanky.hp.width = 10; start_game++;}
+            if(start_game == 0) 
+            {
+                dummy.hp = 100;
+                health = dummy.hp;
+                Blanky.hp.width = 10;
+                dummy.B = 1; 
+                start_game++;
+                dummy.height = 110;
+                dummy.width = 300;
+                dummy.pos.x = S_l/2;
+                dummy.pos.y = S_a/12;
+                dummy.pos.x -= dummy.width/2;
+                dummy.pos.y -= dummy.height/2;
+                norm = RED;
+                met = ORANGE;
+            }
             SetExitKey(261);
             if(IsKeyPressed(256)) {state = 'P';}
             PlayerUpdate(dt);
             if(Blanky.hp.width <= 0) {DeEspawn(); DeEspawnR_Ball(); DeEspawn_S(); DeEspawnB_Ball(); state = 'O';}
-            if(dummy.hp <= 0) {DeEspawn(); DeEspawnR_Ball(); DeEspawn_S(); DeEspawnB_Ball(); state = 'M';}
             DummyUpdate(dt);
             break;
         case'P':

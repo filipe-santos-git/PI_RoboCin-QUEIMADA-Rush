@@ -7,8 +7,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "State_Manager.h"
 
 
+Color norm = RED, met = ORANGE;
 
 
 
@@ -20,9 +22,23 @@ double EscolherAtaque(int num,  double mana)
         if(mana > 2.5)
         {
             mana = 0;
-            CreateBall_to_player();
-            CreateBall_to_player();
-            CreateBall_to_player();
+            switch (dummy.B)
+            {
+            case 1:
+                CreateBall_to_player(3, dummy.B);
+                CreateBall_to_player(4, dummy.B);
+                CreateBall_to_player(3, dummy.B);
+                break;
+            case 2:
+                CreateBall_to_player(GetRandomValue(3, 6), dummy.B);
+                CreateBall_to_player(GetRandomValue(3, 6), dummy.B);
+                CreateBall_to_player(GetRandomValue(3, 6), dummy.B);
+                break;
+            
+            default:
+                break;
+            }
+            
             
         }
         break;
@@ -31,7 +47,23 @@ double EscolherAtaque(int num,  double mana)
         if(mana > 0.6)
         {
             mana = 0;
-            CreateS_ball(1600);
+            switch (dummy.B)
+            {
+            case 1: 
+                //CreateS_ball(1600, S_a/2 - 100, 800, dummy.B);
+                CreateS_ball(1600, S_a/2 - 50, 800, dummy.B);
+                CreateS_ball(1600, S_a/2 + 50, 800, dummy.B);
+                CreateS_ball(1600, S_a/2 + 100, 800, dummy.B);
+                CreateS_ball(1600, S_a/2 + 200, 800, dummy.B);
+                //CreateS_ball(1600, S_a/2 + 250, 800, dummy.B);
+                break;
+            
+            case 2:
+                CreateS_ball(1600, S_a/2, 900, dummy.B);
+                break;
+            default:
+                break;
+            }
         }
         break;
     
@@ -39,7 +71,18 @@ double EscolherAtaque(int num,  double mana)
         if(mana > 0.4)
         {
             mana = 0;
-            CreateB_Ball();
+            switch (dummy.B)
+            {
+            case 1: 
+                CreateB_Ball(400, dummy.B);
+                break;
+            case 2:
+                CreateB_Ball(650, dummy.B);
+                break;
+            default:
+                break;
+            }
+            
         }
     default:
         break;
@@ -52,6 +95,7 @@ int N_AT;
 int health;
 void CreateDummy()
 {
+    dummy.B = 1;
     dummy.pos.x = S_l/2;
     dummy.pos.y = S_a/12;
     dummy.vel.x = 0;
@@ -62,10 +106,8 @@ void CreateDummy()
     dummy.width = 300;
     dummy.pos.x -= dummy.width/2;
     dummy.pos.y -= dummy.height/2;
-    dummy.color = RED;
-    Rectangle rec = {dummy.pos.x, dummy.pos.y, dummy.width, dummy.height};
-    dummy.rec = rec;
-    dummy.hp = 200;
+    dummy.color = norm;
+    dummy.hp = 100;
     health = dummy.hp;
     dummy.start_attack = GetTime();
     N_AT = GetRandomValue(1,3);
@@ -76,6 +118,9 @@ void CreateDummy()
 
 void DummyUpdate(float dt)
 {
+    Rectangle rec = {dummy.pos.x, dummy.pos.y, dummy.width, dummy.height};
+    dummy.rec = rec;
+
     int var = 0;
     switch (last_a)
     {
@@ -98,9 +143,31 @@ void DummyUpdate(float dt)
     B_BallUpdate(dt);
     if(GetTime() > dummy.hitted + 0.3)
     {
-        if(dummy.hp > health/2){dummy.color = RED;}
-        else if(dummy.hp >= health/4) {dummy.color = ORANGE;}
-        else {dummy.color.a = 128;}
+        if(dummy.hp > health/2){dummy.color = norm;}
+        else if(dummy.hp >= health/4) {dummy.color = met;}
+        else {dummy.color.a = 200;}
+    }
+
+
+    if(dummy.hp <= 0 && dummy.B == 1) 
+    {
+        norm = BROWN;
+        met = DARKBROWN;
+        dummy.width = 90;
+        dummy.height = 90;
+        dummy.pos.x = S_l/2 - dummy.width/2;
+        dummy.pos.y = S_a/12 - dummy.height/2;
+        dummy.hp = 200;
+        health = dummy.hp;
+        dummy.B++;
+    }
+    if(dummy.hp <= 0 && dummy.B == 2)
+    {
+        DeEspawn(); 
+        DeEspawnR_Ball(); 
+        DeEspawn_S(); 
+        DeEspawnB_Ball(); 
+        state = 'M';
     }
 
 
@@ -111,7 +178,7 @@ void DummyUpdate(float dt)
 void DummyDraw()
 {
     char mana[10];
-    sprintf(mana, "%.4f", GetTime());
+    sprintf(mana, "%i", dummy.hp);
     DrawText(mana, S_l/2, S_a/2, 40, GRAY);
     //DrawRectangle(0,0, dummy.mana * 100, 30, PURPLE);
     DrawRectangle(dummy.pos.x, dummy.pos.y, dummy.width, dummy.height, dummy.color);

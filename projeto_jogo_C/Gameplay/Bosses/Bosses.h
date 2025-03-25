@@ -18,6 +18,7 @@ typedef struct Boss
     double hitted, mana;
 
     double start_attack;
+    int B;
 }Boss;
 Boss dummy;
 

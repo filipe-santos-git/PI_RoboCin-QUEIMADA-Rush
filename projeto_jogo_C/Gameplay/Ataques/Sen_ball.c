@@ -57,23 +57,32 @@ void DeEspawn_S()
 
 
 
-void CalcularFunc_S(Ball *temp)
+void CalcularFunc_S(Ball *temp, int type)
 {
-    Vector2 pos = {Blanky.pos.x +Blanky.width/2, Blanky.pos.y + Blanky.height/2}; 
-    float angle = temp->i* Vector2Angle(temp->pos, pos);
-    temp->dir.x = temp->i;
-    temp->dir.y = M_PI *(cos(((M_PI/2) * (GetTime() - temp->C))*(temp->s_b_a))) * 6;
-    temp->dir = Vector2Rotate(temp->dir, angle);
-    temp->dir = Vector2Normalize(temp->dir);
-
+    if(type == 1) 
+    {
+        temp->dir.x = -1;
+        temp->dir.y = M_PI *(cos(((M_PI/2) * (GetTime() - temp->C))*(5))) / 6;
+    }
+    else if(type == 2)
+    {
+        Vector2 pos = {Blanky.pos.x +Blanky.width/2, Blanky.pos.y + Blanky.height/2}; 
+        float angle = temp->i* Vector2Angle(temp->pos, pos);
+        temp->dir.x = temp->i;
+        temp->dir.y = M_PI *(cos(((M_PI/2) * (GetTime() - temp->C))*(temp->s_b_a))) * 6;
+        temp->dir = Vector2Rotate(temp->dir, angle);
+        temp->dir = Vector2Normalize(temp->dir);
+    }
 }
 
 
 
-
-void CreateS_ball(int X)
+int YS = 0, k =5;
+void CreateS_ball(int X, int Y, int vel, int type)
 {
-
+    if(YS > 150){k = -k;}
+    if(YS < -150){k = -k;}
+     
     Ball *temp;
     if(s_ball == NULL)
     {
@@ -90,8 +99,8 @@ void CreateS_ball(int X)
     if(s_ball == NULL) {exit(1);}
     s_ball->pos.x = X;
     if(s_ball->pos.x < S_l/2) {s_ball->i = 1;} else {s_ball->i = -1;}
-    s_ball->pos.y = S_a/2;
-    s_ball->vel = 900;
+    s_ball->pos.y = Y + YS;
+    s_ball->vel = vel;
     s_ball->tam = 10;
     s_ball->acel = 4;
     s_ball->s_b_a = 3;
@@ -100,6 +109,8 @@ void CreateS_ball(int X)
     s_ball->color = color;
     s_ball->dir = dummy.pos;
     s_ball->C = GetTime();
+    s_ball->type = type;
+    YS += k;
     
 }
 
@@ -120,7 +131,7 @@ void S_BallUpdate(float dt)
     Ball *temp = s_ball;
     while(temp != NULL)
     {
-        CalcularFunc_S(temp);
+        CalcularFunc_S(temp, temp->type);
         temp->pos.x += temp->dir.x * dt * s_ball->vel;
         temp->pos.y += temp->dir.y * dt * s_ball->vel;
         if(CheckCollisionCircleRec(temp->pos, temp->tam, Blanky.rec))

@@ -34,8 +34,8 @@ void B_BallArenaColision()
             temp->pos.y < arena.rec.y ||
             temp->pos.y > arena.rec.height + arena.rec.y) 
         {
+            temp->vel -= temp->vel/temp->bounce;
             temp->bounce--;
-            temp->vel -= 90;
             if(temp->bounce <= 0)
             {
                 if(temp == b_ball)
@@ -67,7 +67,7 @@ void B_BallArenaColision()
 
 Vector2 posb = {1,-1};
 float fxb =0, fyb =0;
-void CreateB_Ball()
+void CreateB_Ball(int vel, int type)
 {
     Ball *temp;
     if(b_ball == NULL)
@@ -85,11 +85,10 @@ void CreateB_Ball()
     if(b_ball == NULL) {exit(1);}
     b_ball->pos.x = arena.rec.x + arena.rec.width/2;
     b_ball->pos.y = arena.rec.height/2 + arena.rec.y;
-    b_ball->vel = 600;
+    b_ball->vel = vel;
     b_ball->tam = 10;
     Color color = { 255, 161, 0, 255 };
     b_ball->color = color;
-    b_ball->bounce = 4;
     posb.y += fyb;
     posb.x += fxb;
     Vector2 dir = posb;
@@ -99,6 +98,9 @@ void CreateB_Ball()
     else if(posb.x <= -1 && posb.y <= -1) {fxb = 0.3; fyb =0;}
     dir = Vector2Normalize(dir);
     b_ball->dir = dir;
+    b_ball->type = type;
+    if(type == 1) {b_ball->bounce = 3;}
+    else if(type == 2) {b_ball->bounce = 5;}
 }
 
 
