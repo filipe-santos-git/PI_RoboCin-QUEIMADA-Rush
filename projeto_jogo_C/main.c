@@ -13,11 +13,13 @@
 #include <string.h>
 #include "../assets/audios/audios_effects.h"
 
+<<<<<<< Updated upstream
 #define NUM_AUDIOS 4
+=======
+>>>>>>> Stashed changes
 //----------------------------------------------------------------------------------
 // Local Functions Declaration
 //----------------------------------------------------------------------------------
-
 
 
 //----------------------------------------------------------------------------------
@@ -25,6 +27,7 @@
 //----------------------------------------------------------------------------------
 int main()
 {
+<<<<<<< Updated upstream
    
     // Initialization
     //--------------------------------------------------------------------------------------
@@ -38,34 +41,74 @@ int main()
     const char *filenames [NUM_AUDIOS] = {"assets/audios/effects/bola.wav","assets/audios/effects/boss-entrada.wav","assets/audios/effects/soco.wav","assets/audios/effects/vida.wav"};
     Sound effects[NUM_AUDIOS];
     LoadSounds(effects, filenames, NUM_AUDIOS);
+=======
+    // Inicialização
+    InitAudioDevice();
+>>>>>>> Stashed changes
 
+    // Inicializa a janela
     InitWindow(S_l, S_a, "raylib_1");
+<<<<<<< Updated upstream
     //ToggleBorderlessWindowed();
     SetTargetFPS(60);
+=======
+
+    // Cria os componentes do jogo
+>>>>>>> Stashed changes
     CreateGameOver();
     CreateDummy();
     CreatePause();
     CreateArena();
+<<<<<<< Updated upstream
     CreatePlayer(effects[2]); 
 
+=======
+    CreatePlayer();
+>>>>>>> Stashed changes
 
+    // Carrega a música
+    Music teste = LoadMusicStream("projeto_jogo_C/assets/audios/effects/mixkit-winning-a-coin-video-game-2069.wav");
     
-    while (!WindowShouldClose())    
+
+    // Ajusta o volume
+    SetMasterVolume(0.5f);  // Volume global para 50%
+    SetMusicVolume(teste, 0.5f);  // Volume da música para 50%
+
+    // Toca a música (não precisa chamar dentro do loop de cada frame)
+    PlayMusicStream(teste);
+
+    while (!WindowShouldClose())
     {
         float dt = GetFrameTime();
 
+        // Atualiza a música
+        UpdateMusicStream(teste);
+
+        // Atualiza e desenha o jogo
         ScreenUpdate(dt);
+        GreenState();
 
         BeginDrawing();
-            ScreenDraw();
-            DrawFPS(10, 10);
+        ScreenDraw();
+
+        // Desenha o FPS na tela
+        DrawFPS(10, 10);
+
         EndDrawing();
     }
 
+<<<<<<< Updated upstream
 
    //Unload sound data
     UnloadSounds(effects, NUM_AUDIOS); 
     CloseAudioDevice();  
+=======
+    // Limpeza de recursos
+    unload();
+    UnloadMusicStream(teste);
+    CloseAudioDevice();
+    CloseWindow();
+>>>>>>> Stashed changes
 
     CloseWindow();  
                

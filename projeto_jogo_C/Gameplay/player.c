@@ -21,6 +21,7 @@ void CreatePlayer(Sound som_verde)
     Blanky.pos = pos;
     Blanky.height = 20;
     Blanky.width = 20;
+    Blanky.sound = LoadSound("projeto_jogo_C/assets/audios/effects/mixkit-cool-impact-movie-trailer-2909.wav");
     Blanky.pos.x -= Blanky.width; Blanky.pos.y -= Blanky.height;
     Blanky.color = BLUE;
     Blanky.ready = 1;
@@ -39,9 +40,15 @@ void CreatePlayer(Sound som_verde)
 void GreenState()
 {
     Blanky.now = GetTime();
+<<<<<<< Updated upstream
     if(IsKeyPressed(32) && Blanky.ready == 1)
     {   
         PlaySound(Blanky.som_verde);
+=======
+    PlaySound(Blanky.sound);
+    if((IsKeyPressed(32) || IsMouseButtonPressed(0)) && Blanky.ready == 1)
+    {
+>>>>>>> Stashed changes
         Blanky.color = GREEN; 
         Blanky.time = GetTime();
         Blanky.ready = 0;
@@ -94,6 +101,10 @@ void PlayerDraw()
     DrawRectangle(Blanky.hp.x, Blanky.hp.y- 50, a * 150, Blanky.hp.height, Blanky.reflect);
     DrawRectangle(Blanky.hp.x, Blanky.hp.y, Blanky.hp.width *  15, Blanky.hp.height, Blanky.hp.color);
     DrawRectangle(Blanky.pos.x, Blanky.pos.y, Blanky.width, Blanky.height, Blanky.color);
+}
+
+void unload(){
+    UnloadSound(Blanky.sound);
 }
 
 

@@ -18,10 +18,17 @@ typedef struct Player
     Vector2 pos;
     Vector2 vel;
     Color color;
+    Sound sound;
     int ready;
     double now, time;
     Color reflect;
+<<<<<<< Updated upstream
     Sound som_verde;
+=======
+    Rectangle rec;
+    double hitted;
+    int hit, dash_ready;
+>>>>>>> Stashed changes
 }Player;
 
 void GreenState();
