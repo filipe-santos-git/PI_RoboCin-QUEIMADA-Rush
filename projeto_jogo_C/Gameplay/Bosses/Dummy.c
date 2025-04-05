@@ -9,10 +9,7 @@
 #include <string.h>
 #include "State_Manager.h"
 
-
 Color norm = RED, met = ORANGE;
-
-
 
 double EscolherAtaque(int num,  double mana)
 {
@@ -95,6 +92,8 @@ int N_AT;
 int health;
 void CreateDummy()
 {
+    dummy.robocin_nivel_1 = LoadTexture("assets/robocin_nivel_1.png");
+    dummy.robocin_atordoado= LoadTexture ("assets/robocin_atordoado.png");
     dummy.B = 1;
     dummy.pos.x = S_l/2;
     dummy.pos.y = S_a/12;
@@ -106,7 +105,6 @@ void CreateDummy()
     dummy.width = 300;
     dummy.pos.x -= dummy.width/2;
     dummy.pos.y -= dummy.height/2;
-    dummy.color = norm;
     dummy.hp = 100;
     health = dummy.hp;
     dummy.start_attack = GetTime();
@@ -141,12 +139,23 @@ void DummyUpdate(float dt)
     BallUpdate(dt);
     S_BallUpdate(dt);
     B_BallUpdate(dt);
-    if(GetTime() > dummy.hitted + 0.3)
+    if (GetTime() < dummy.hitted + 0.3)
     {
-        if(dummy.hp > health/2){dummy.color = norm;}
-        else if(dummy.hp >= health/4) {dummy.color = met;}
-        else {dummy.color.a = 200;}
+        float scale = 1.3f;
+        float textureWidth = dummy.width * scale;
+        float textureHeight = dummy.height * scale;
+        Vector2 spritePosition =  {(dummy.pos.x - textureWidth/2), (dummy.pos.y - textureHeight/2)};
+        DrawTextureEx(dummy.robocin_atordoado, spritePosition, 0.0f, scale, WHITE);
     }
+    else
+    {
+        float scale = 1.3f;
+        float textureWidth = dummy.width * scale;
+        float textureHeight = dummy.height * scale;
+        Vector2 spritePosition =  {(dummy.pos.x - textureWidth/2), (dummy.pos.y - textureHeight/2)};
+        DrawTextureEx(dummy.robocin_nivel_1, spritePosition, 0.0f, scale, WHITE);
+    }
+
 
 
     if(dummy.hp <= 0 && dummy.B == 1) 
@@ -181,7 +190,6 @@ void DummyDraw()
     sprintf(mana, "%i", dummy.hp);
     DrawText(mana, S_l/2, S_a/2, 40, GRAY);
     //DrawRectangle(0,0, dummy.mana * 100, 30, PURPLE);
-    DrawRectangle(dummy.pos.x, dummy.pos.y, dummy.width, dummy.height, dummy.color);
     BallDraw();
     S_BallDraw();
     B_BallDraw();

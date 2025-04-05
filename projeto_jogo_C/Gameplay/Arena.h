@@ -9,6 +9,7 @@ typedef struct Arena
 {
     Rectangle rec;
     float line_thick;
+    Texture quadra;
     Color color;
     double TimeGame;
     char time[10];

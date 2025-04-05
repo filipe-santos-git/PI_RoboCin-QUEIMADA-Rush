@@ -31,6 +31,7 @@ void CalcularFunc()
 void CreateR_ball()
 {
 
+    
     Ball *temp;
     if(r_ball == NULL)
     {
@@ -52,6 +53,7 @@ void CreateR_ball()
     r_ball->tam = 10;
     r_ball->acel = 4;
     Color color = VIOLET;
+    r_ball->ball = BlueBall;
     r_ball->color = color;
     r_ball->dir = dummy.pos;
     r_ball->C = GetTime();
@@ -101,10 +103,16 @@ void R_BallDraw()
     Ball *temp = r_ball;
     while(temp != NULL)
     {
-        DrawCircle(temp->pos.x, temp->pos.y, temp->tam, temp->color);
+        //DrawCircle(temp->pos.x, temp->pos.y, temp->tam, temp->color);
+        float scale = 0.03f;
+        float textureWidth = BlueBall.width * scale;
+        float textureHeight = BlueBall.height * scale;
+        Vector2 spritePosition =  {(temp->pos.x - textureWidth/2), (temp->pos.y - textureHeight/2)};
+        DrawTextureEx(r_ball->ball, spritePosition, 0.0f, scale, WHITE);
         temp = temp->next;
     }
 }
+
 
 void DeEspawnR_Ball()
 {
