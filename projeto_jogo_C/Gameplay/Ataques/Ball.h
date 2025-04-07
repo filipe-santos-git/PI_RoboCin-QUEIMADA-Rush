@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "CarregarTexturas/loadtextures.h"
 
 
 
@@ -13,6 +14,7 @@ typedef struct Ball
     Vector2 pos;
     Vector2 dir;
     Color color;
+    Texture ball;
     struct Ball *next;
     struct Ball *before;
     float vel, acel;

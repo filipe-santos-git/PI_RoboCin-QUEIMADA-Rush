@@ -157,12 +157,13 @@ void CreateBall_to_player(int vel, int type)
     if(ball == NULL) {exit(1);}
     ball->pos = pos;
     ball->vel = 100 * vel;
-    ball->tam = 10;
+    ball->tam = 30;
     Color color = { 255, 161, 0, 255 };
     ball->color = color;
     ball->dir = Blanky.pos;
     Vector2 player_pos = {Blanky.pos.x + Blanky.width/2, Blanky.pos.y + Blanky.height/2}; 
     Vector2 dir = Vector2Normalize(Vector2Subtract(ball->pos, player_pos));
+    ball->ball = RedBall;
     dir.x = -dir.x;
     dir.y = -dir.y;
     ball->dir = dir;
@@ -189,7 +190,11 @@ void BallDraw()
     Ball *temp = ball;
     while(temp != NULL)
     {
-        DrawCircle(temp->pos.x, temp->pos.y, temp->tam, temp->color);
+        float scale = 0.03f;
+        float textureWidth = RedBall.width * scale;
+        float textureHeight = RedBall.height * scale;
+        Vector2 spritePosition =  {(temp->pos.x - textureWidth/2), (temp->pos.y - textureHeight/2)};
+        DrawTextureEx(ball->ball, spritePosition, 0.0f, scale, WHITE);
         temp = temp->next;
         
     }
