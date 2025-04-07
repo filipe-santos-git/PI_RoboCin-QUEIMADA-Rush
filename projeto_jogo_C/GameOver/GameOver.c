@@ -49,14 +49,8 @@ void GameOverUpdate()
 void GameOverDraw()
 {
     ClearBackground(BLACK);
-    float scale = 2.0f;
-    Vector2 position = {0, 0};
-    DrawTextureEx(menu.game_over, position, 0.0f, scale, WHITE);
-    float scale2 = 0.5f;
-    Vector2 position2 = {main_menu.rec.x, main_menu.rec.y};
-    DrawTextureEx(menu.sair, position2, 0.0f, scale2, WHITE);
-    float scale3 = 0.5f;
-    Vector2 position3 = {over_resume.rec.x, over_resume.rec.y};
-    DrawTextureEx(menu.tente_novamente, position3, 0.0f, scale3, WHITE);
-    DrawText(arena.time, S_l/2 -60, S_a/1.7, 200, RAYWHITE);
+    ButtonDraw(&main_menu);
+    ButtonDraw(&over_resume);
+    DrawText("Game Over", S_l/2 - 270, 300, 100, RED);
+    DrawText(arena.time, S_l/2 -60, S_a/2, 140, RAYWHITE);
 }

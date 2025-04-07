@@ -4,13 +4,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "CarregarTexturas/loadtextures.h"
 
 typedef struct Arena
 {
     Rectangle rec;
-    float line_thick;
     Texture quadra;
+    float line_thick;
     Color color;
     double TimeGame;
     char time[10];

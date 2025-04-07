@@ -9,12 +9,11 @@
 
 
 
-
 void CreateArena()
 {
     const int center_x = S_l/2;
     const int center_y = S_a/2;
-    arena.quadra = quadra;
+    arena.quadra = LoadTexture("assets/quadra.png");
     arena.rec.x = center_x;
     arena.rec.y = center_y;
     arena.rec.height = 500;
@@ -31,6 +30,7 @@ void CreateArena()
 void ArenaDraw()
 {
     ClearBackground(BLACK);
+    DrawRectangleLinesEx(arena.rec, arena.line_thick, RAYWHITE);
     DrawTexture(arena.quadra,arena.rec.x, arena.rec.y, WHITE);
     DrawText(arena.time, 20, 50, 90, YELLOW);
 }

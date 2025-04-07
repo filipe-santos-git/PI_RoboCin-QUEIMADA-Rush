@@ -46,6 +46,9 @@ void ScreenUpdate(float dt)
                 dummy.pos.x = S_l/2;
                 dummy.pos.y = S_a/12;
                 dummy.pos.x -= dummy.width/2;
+                dummy.pos.y -= dummy.height/2;
+                norm = RED;
+                met = ORANGE;
             }
             SetExitKey(261);
             if(IsKeyPressed(256)) {state = 'P';}

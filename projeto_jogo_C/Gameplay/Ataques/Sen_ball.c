@@ -106,7 +106,7 @@ void CreateS_ball(int X, int Y, int vel, int type)
     s_ball->s_b_a = 3;
     s_ball->s_b_f = 5;
     Color color = ORANGE;
-    s_ball->ball= RedBall;
+    ball->ball = RedBall;
     s_ball->color = color;
     s_ball->dir = dummy.pos;
     s_ball->C = GetTime();
@@ -121,11 +121,12 @@ void S_BallDraw()
     Ball *temp = s_ball;
     while(temp != NULL)
     {
+        //DrawCircle(temp->pos.x, temp->pos.y, temp->tam, temp->color);
         float scale = 0.03f;
         float textureWidth = RedBall.width * scale;
         float textureHeight = RedBall.height * scale;
         Vector2 spritePosition =  {(temp->pos.x - textureWidth/2), (temp->pos.y - textureHeight/2)};
-        DrawTextureEx(s_ball->ball, spritePosition, 0.0f, scale, WHITE);
+        DrawTextureEx(ball->ball, spritePosition, 0.0f, scale, WHITE);
         temp = temp->next;
     }
 }

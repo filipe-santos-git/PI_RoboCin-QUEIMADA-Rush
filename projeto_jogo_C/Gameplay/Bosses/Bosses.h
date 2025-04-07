@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "CarregarTexturas/loadtextures.h"
 
 typedef struct Boss
 {
@@ -15,8 +14,6 @@ typedef struct Boss
     int ataque;
     Color color;
     Rectangle rec;
-    Texture robocin_atordoado;
-    Texture robocin_nivel_1;
     int hp, hit;
     double hitted, mana;
 

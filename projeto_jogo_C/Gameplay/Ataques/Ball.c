@@ -157,7 +157,7 @@ void CreateBall_to_player(int vel, int type)
     if(ball == NULL) {exit(1);}
     ball->pos = pos;
     ball->vel = 100 * vel;
-    ball->tam = 30;
+    ball->tam = 10;
     Color color = { 255, 161, 0, 255 };
     ball->color = color;
     ball->dir = Blanky.pos;
@@ -190,6 +190,8 @@ void BallDraw()
     Ball *temp = ball;
     while(temp != NULL)
     {
+        DrawCircle(temp->pos.x, temp->pos.y, temp->tam, temp->color);
+        //DrawTexture(ball->ball, temp->pos.x, temp->pos.y, WHITE);
         float scale = 0.03f;
         float textureWidth = RedBall.width * scale;
         float textureHeight = RedBall.height * scale;

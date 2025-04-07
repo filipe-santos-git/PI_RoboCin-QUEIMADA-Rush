@@ -89,10 +89,10 @@ void CreateB_Ball(int vel, int type)
     b_ball->tam = 10;
     Color color = { 255, 161, 0, 255 };
     b_ball->color = color;
-    b_ball->ball= RedBall;
     posb.y += fyb;
     posb.x += fxb;
     Vector2 dir = posb;
+    ball->ball = RedBall;
     if(posb.x >= 1 && posb.y <= -1) {fyb = 0.3; fxb = 0;}
     else if(posb.x >= 1 && posb.y >= 1) {fxb = -0.3; fyb =0;}
     else if(posb.x <= -1 && posb.y >= 1) {fyb = -0.3; fxb =0;}
@@ -147,11 +147,12 @@ void B_BallDraw()
     Ball *temp = b_ball;
     while(temp != NULL)
     {
+        //DrawCircle(temp->pos.x, temp->pos.y, temp->tam, temp->color);
         float scale = 0.03f;
         float textureWidth = RedBall.width * scale;
         float textureHeight = RedBall.height * scale;
         Vector2 spritePosition =  {(temp->pos.x - textureWidth/2), (temp->pos.y - textureHeight/2)};
-        DrawTextureEx(b_ball->ball, spritePosition, 0.0f, scale, WHITE);
+        DrawTextureEx(ball->ball, spritePosition, 0.0f, scale, WHITE);
         temp = temp->next;
         
     }

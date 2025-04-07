@@ -22,30 +22,31 @@ void CreatePause()
     Color back = {100, 100, 100, 70};
     pause.back = back;
 
-    Rectangle rec_menu = {S_l/2, S_a/2, 1300, 600};
+    Rectangle rec_menu = {S_l/2, S_a/2, 700, 400};
     pause.rec_menu = rec_menu;
     pause.rec_menu.x -= pause.rec_menu.width/2;
     pause.rec_menu.y -= pause.rec_menu.height/2;
     pause.color_rec = BLACK;
-    pause.pauseScreen = pauseScreen;
 
+    strcpy(pause.Text, "Pause");
+    pause.fonte_tam = 60;
+    pause.text_color = RAYWHITE;
+    pause.tx = S_l/2 - 90;
+    pause.ty = 60;
 
-    Rectangle button = {pause.rec_menu.x, pause.rec_menu.y, 600, 200};
+    Rectangle button = {pause.rec_menu.x, pause.rec_menu.y, 200, 150};
     p_menu.rec = button;
-    p_menu.rec.x += 20;
-    p_menu.rec.y += pause.rec_menu.y;
+    p_menu.rec.x += 70;
+    p_menu.rec.y += pause.rec_menu.y/4;
     p_menu.color = RAYWHITE;
-    pause.quit1 = quitRed;
-    pause.quit2 = quitGreen;
 
 
     
     resume.rec = button;
-    resume.rec.x += 650;
-    resume.rec.y += pause.rec_menu.y;
+    resume.rec.x += 425;
+    resume.rec.y += pause.rec_menu.y/4;
     resume.color = RAYWHITE;
-    pause.resume1 = resumeGreen;
-    pause.resume2 =  resumeRed;
+
 
 
 
@@ -72,25 +73,11 @@ void PauseUpdate()
 
 void PauseDraw()
 {
-    Vector2 mouse = GetMousePosition();
-
-
     DrawRectangleRec(pause.rec_back, pause.back);
-
-    DrawTexture(pause.pauseScreen, S_l/8, S_a/8, WHITE);
-
-    if (CheckCollisionPointRec(mouse, p_menu.rec)) {
-        DrawTexture(pause.quit2, p_menu.rec.x, p_menu.rec.y, WHITE);
-    } else {
-        DrawTexture(pause.quit1, p_menu.rec.x, p_menu.rec.y, WHITE);
-    }
-
-    if (CheckCollisionPointRec(mouse, resume.rec)) {
-        DrawTexture(pause.resume1, resume.rec.x, resume.rec.y, WHITE);
-    } else {
-        DrawTexture(pause.resume2, resume.rec.x, resume.rec.y, WHITE);
-    }
-
-    //DrawText(arena.time, 20, 30, 40, GREEN);
+    DrawRectangleRec(pause.rec_menu, pause.color_rec);
+    DrawRectangleRec(p_menu.rec, p_menu.color);
+    DrawRectangleRec(resume.rec, resume.color);
+    DrawText(pause.Text, pause.tx, pause.ty, pause.fonte_tam, pause.text_color);
+    DrawText(arena.time, 20, 30, 40, GREEN);
 
 }
