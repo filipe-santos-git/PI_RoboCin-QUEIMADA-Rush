@@ -21,6 +21,7 @@ Texture game_over;
 Texture proxima_fase;
 Texture tela_vitoria;
 Texture fundo;
+Texture heart;
 
 
 

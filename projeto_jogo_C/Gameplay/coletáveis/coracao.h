@@ -18,7 +18,7 @@ typedef struct Coracao
 
 } Coracao;
 
-Coracao *heart;
+Coracao *hearts;
 
 
 

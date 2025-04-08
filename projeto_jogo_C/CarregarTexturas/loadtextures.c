@@ -23,6 +23,7 @@ void Carregar(){
     proxima_fase = LoadTexture("assets/proxima_fase.png");
     tela_vitoria = LoadTexture("assets/tela_vitoria.png");
     fundo= LoadTexture("assets/fundo.png");
+    heart = LoadTexture("assets/coracao.png");
 }
 
 void Descarregar(){
@@ -46,4 +47,5 @@ void Descarregar(){
     UnloadTexture(proxima_fase);
     UnloadTexture(tela_vitoria);
     UnloadTexture(fundo);
+    UnloadTexture(heart);
 }

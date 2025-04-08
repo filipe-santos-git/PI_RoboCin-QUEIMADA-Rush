@@ -5,6 +5,7 @@
 #include "General_Classes/Screen_Details.h"
 #include "Main_menu/Main_Menu.c"
 #include "Win1_menu/Win1_Menu.c"
+#include "Vitoria_menu/Vitoria_Menu.c"
 #include "Pause/Pause_Menu.c"
 #include "Gameplay/Bosses/Bosses.h"
 #include "Gameplay/Ataques/Ball.h"
@@ -94,6 +95,11 @@ void ScreenUpdate(float dt)
             start_game=2;
 
             break;
+        case'V':
+            ShowCursor();
+            SetExitKey(256);
+            VitoriaUpdate();
+            break;
         default: break;
 
     }
@@ -123,6 +129,9 @@ void ScreenDraw()
         case'W':
             Win1Draw();
             break;
+        case'V':
+            VitoriaDraw();
+            break;           
         default: break;
     }
 }

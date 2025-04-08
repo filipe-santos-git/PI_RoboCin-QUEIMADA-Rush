@@ -152,7 +152,7 @@ void DummyUpdate(float dt)
 
 
 
-    if(dummy.hp <= 0 && dummy.B == 1) 
+    if(dummy.hp <= 97 && dummy.B == 1) 
     {
         DeEspawn(); 
         DeEspawnR_Ball(); 
@@ -160,7 +160,7 @@ void DummyUpdate(float dt)
         DeEspawnB_Ball(); 
         state = 'W';
     }
-    if(dummy.hp <= 0 && dummy.B == 2)
+    if(dummy.hp <= 197 && dummy.B == 2)
     {
         DeEspawn(); 
         DeEspawnR_Ball(); 

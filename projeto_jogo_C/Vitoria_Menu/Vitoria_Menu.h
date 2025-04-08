@@ -1,5 +1,5 @@
-#ifndef MAIN
-#define MAIN
+#ifndef VITORIA
+#define VITORIA
 
 #include "raylib.h"
 #include "General_Classes/Button.h"
@@ -22,7 +22,5 @@ typedef struct Vitoria
     Color Tiltle_color;
 }Vitoria;
 
-
-
-
+#include "Vitoria_Menu.c"
 #endif
