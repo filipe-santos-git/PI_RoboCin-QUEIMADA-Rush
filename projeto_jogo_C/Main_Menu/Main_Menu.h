@@ -21,6 +21,8 @@ typedef struct Menu
     Texture start1;
     Texture start2;
     Texture sair;
+    Texture sair_azul;
+    Texture tente_novamente_2;
     Texture tente_novamente;
     Color BackGround_color;
     Color Tiltle_color;

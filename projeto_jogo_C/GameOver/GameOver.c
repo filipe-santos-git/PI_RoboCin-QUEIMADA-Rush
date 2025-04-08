@@ -54,9 +54,28 @@ void GameOverDraw()
     DrawTextureEx(menu.game_over, position, 0.0f, scale, WHITE);
     float scale2 = 0.5f;
     Vector2 position2 = {main_menu.rec.x, main_menu.rec.y};
-    DrawTextureEx(menu.sair, position2, 0.0f, scale2, WHITE);
+    
+    if (CheckCollisionPointRec(GetMousePosition(), main_menu.rec))
+    {
+        DrawTextureEx(menu.sair_azul, position2, 0.0f, scale2, WHITE);  
+    }
+    else
+    {
+        DrawTextureEx(menu.sair, position2, 0.0f, scale2, WHITE);
+    }
+
     float scale3 = 0.5f;
     Vector2 position3 = {over_resume.rec.x, over_resume.rec.y};
-    DrawTextureEx(menu.tente_novamente, position3, 0.0f, scale3, WHITE);
-    DrawText(arena.time, S_l/2 -60, S_a/1.7, 200, RAYWHITE);
+    
+    if (CheckCollisionPointRec(GetMousePosition(), over_resume.rec))
+    {
+        DrawTextureEx(menu.tente_novamente_2, position3, 0.0f, scale3, WHITE);
+    }
+    else
+    {
+        DrawTextureEx(menu.tente_novamente, position3, 0.0f, scale3, WHITE); 
+    }
+
+    // Desenha o tempo
+    DrawText(arena.time, S_l / 2 - 60, S_a / 1.7, 200, RAYWHITE);
 }

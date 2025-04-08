@@ -18,7 +18,8 @@ Texture sair;
 Texture tente_novamente;
 Texture menu_imagem;
 Texture game_over;
-
+Texture tente_novamente_2;
+Texture sair_azul;
 
 
 

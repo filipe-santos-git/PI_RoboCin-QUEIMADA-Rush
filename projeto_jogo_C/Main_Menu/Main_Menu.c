@@ -25,7 +25,9 @@ void StartButton()
     menu.start1 = start1;
     menu.start2 = start2;
     menu.sair= sair;
+    menu.sair_azul= sair_azul;
     menu.tente_novamente = tente_novamente;
+    menu.tente_novamente_2= tente_novamente_2;
     menu.button.text_color = RAYWHITE;
     menu.button.color = BLACK;
     Color b, t;
