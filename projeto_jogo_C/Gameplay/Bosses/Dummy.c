@@ -92,8 +92,8 @@ int N_AT;
 int health;
 void CreateDummy()
 {
-    dummy.robocin_nivel_1 = robocin_nivel_1;
-    dummy.robocin_atordoado = robocin_atordoado;
+    dummy.nivel = robocin_nivel_1;
+    dummy.atordoado = robocin_atordoado;
     dummy.B = 1;
     dummy.pos.x = S_l/2;
     dummy.pos.y = S_a/12;
@@ -125,8 +125,7 @@ void DummyUpdate(float dt)
     case 1: var = 3; break;
     case 2: var = 7; break;
     case 3: var = 5; break;
-    default:
-        break;
+    default: break;
     }
 
     dummy.mana += 5 *dt;
@@ -139,21 +138,22 @@ void DummyUpdate(float dt)
     BallUpdate(dt);
     S_BallUpdate(dt);
     B_BallUpdate(dt);
+
+    Color tone;  
+    if(dummy.hp > 0) 
+    {
+        Color Tone = {255/(health/dummy.hp), 255/(health/dummy.hp), 255/(health/dummy.hp), 255};
+        tone = Tone;
+    }
+    
+    
     if (GetTime() < dummy.hitted + 0.3)
     {
-        float scale = 1.3f;
-        float textureWidth = dummy.width * scale;
-        float textureHeight = dummy.height * scale;
-        Vector2 spritePosition =  {(dummy.pos.x - textureWidth/2), (dummy.pos.y - textureHeight/2)};
-        DrawTextureEx(dummy.robocin_atordoado, spritePosition, 0.0f, scale, WHITE);
+        dummy.atual = dummy.atordoado;
     }
     else
     {
-        float scale = 1.3f;
-        float textureWidth = dummy.width * scale;
-        float textureHeight = dummy.height * scale;
-        Vector2 spritePosition =  {(dummy.pos.x - textureWidth/2), (dummy.pos.y - textureHeight/2)};
-        DrawTextureEx(dummy.robocin_nivel_1, spritePosition, 0.0f, scale, WHITE);
+        dummy.atual = dummy.nivel;
     }
 
 
@@ -167,6 +167,7 @@ void DummyUpdate(float dt)
         dummy.pos.x = S_l/2 - dummy.width/2;
         dummy.pos.y = S_a/12 - dummy.height/2;
         dummy.hp = 200;
+        //dummy.nivel = robocin_nivel_2
         health = dummy.hp;
         dummy.B++;
     }
@@ -190,6 +191,11 @@ void DummyDraw()
     sprintf(mana, "%i", dummy.hp);
     DrawText(mana, S_l/2, S_a/2, 40, GRAY);
     //DrawRectangle(0,0, dummy.mana * 100, 30, PURPLE);
+    float scale = 1.3f;
+    float textureWidth = dummy.width * scale;
+    float textureHeight = dummy.height * scale;
+    Vector2 spritePosition =  {(dummy.pos.x - textureWidth/2), (dummy.pos.y - textureHeight/2)};
+    DrawTextureEx(dummy.atual, spritePosition, 0.0f, scale, WHITE);
     BallDraw();
     S_BallDraw();
     B_BallDraw();

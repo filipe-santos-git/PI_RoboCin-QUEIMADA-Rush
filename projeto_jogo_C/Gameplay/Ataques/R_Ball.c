@@ -104,7 +104,7 @@ void R_BallDraw()
     while(temp != NULL)
     {
         //DrawCircle(temp->pos.x, temp->pos.y, temp->tam, temp->color);
-        float scale = 0.03f;
+        float scale = 0.025f;
         float textureWidth = BlueBall.width * scale;
         float textureHeight = BlueBall.height * scale;
         Vector2 spritePosition =  {(temp->pos.x - textureWidth/2), (temp->pos.y - textureHeight/2)};

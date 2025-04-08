@@ -15,8 +15,9 @@ typedef struct Boss
     int ataque;
     Color color;
     Rectangle rec;
-    Texture robocin_atordoado;
-    Texture robocin_nivel_1;
+    Texture atordoado;
+    Texture nivel;
+    Texture atual;
     int hp, hit;
     double hitted, mana;
 

@@ -121,7 +121,7 @@ void S_BallDraw()
     Ball *temp = s_ball;
     while(temp != NULL)
     {
-        float scale = 0.03f;
+        float scale = 0.025f;
         float textureWidth = RedBall.width * scale;
         float textureHeight = RedBall.height * scale;
         Vector2 spritePosition =  {(temp->pos.x - textureWidth/2), (temp->pos.y - textureHeight/2)};

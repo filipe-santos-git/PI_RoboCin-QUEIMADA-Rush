@@ -88,10 +88,10 @@ void PlayerUpdate(float dt)
     if((IsKeyPressed(340) || IsMouseButtonPressed(1)) && Blanky.dash_ready == 1)
     {
         Blanky.dash_t = GetTime();
-        Blanky.vel += 300; 
+        Blanky.vel += 400; 
         Blanky.dash_ready = 0;
     }
-    if(Blanky.now > 0.5 + Blanky.dash_t){Blanky.vel = 300;}
+    if(Blanky.now > 0.3 + Blanky.dash_t){Blanky.vel = 300;}
     if(Blanky.now > 1 + Blanky.dash_t){Blanky.dash_ready = 1;}
 
     
