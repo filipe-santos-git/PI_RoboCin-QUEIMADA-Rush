@@ -25,6 +25,7 @@ void CheckState()
         Blanky.hitted = GetTime();
         Blanky.color = RAYWHITE;
         Blanky.hit = 1;
+        Blanky.dano = 1;
     }
 }
 

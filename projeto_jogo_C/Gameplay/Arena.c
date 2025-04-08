@@ -15,6 +15,7 @@ void CreateArena()
     const int center_x = S_l/2;
     const int center_y = S_a/2;
     arena.quadra = quadra;
+    arena.fundo=fundo;
     arena.rec.x = center_x;
     arena.rec.y = center_y;
     arena.rec.height = 500;
@@ -31,6 +32,9 @@ void CreateArena()
 void ArenaDraw()
 {
     ClearBackground(BLACK);
+    float scale = 2.0f;
+    Vector2 position = {0, 0};
+    DrawTextureEx(arena.fundo, position, 0.0f, scale, WHITE);
     DrawTexture(arena.quadra,arena.rec.x, arena.rec.y, WHITE);
     DrawText(arena.time, 20, 50, 90, YELLOW);
 }

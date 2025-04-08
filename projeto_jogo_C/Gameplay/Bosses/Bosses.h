@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Gameplay/coletáveis/coracao.h"
 #include "CarregarTexturas/loadtextures.h"
 
 typedef struct Boss

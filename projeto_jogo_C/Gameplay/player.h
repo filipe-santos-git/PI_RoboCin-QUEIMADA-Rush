@@ -19,9 +19,11 @@ typedef struct Player
     double now, time, dash_t;
     Color reflect;
     Rectangle rec;
-
+    Sound dash;
     double hitted;
-    int hit, dash_ready;
+    int hit, dash_ready, dano;
+
+    
 }Player;
 
 Player Blanky;

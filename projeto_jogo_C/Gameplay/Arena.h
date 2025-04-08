@@ -11,6 +11,7 @@ typedef struct Arena
     Rectangle rec;
     float line_thick;
     Texture quadra;
+    Texture fundo;
     Color color;
     double TimeGame;
     char time[10];

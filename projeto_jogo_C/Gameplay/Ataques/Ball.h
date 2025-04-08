@@ -15,6 +15,7 @@ typedef struct Ball
     Vector2 dir;
     Color color;
     Texture ball;
+    Sound rebate;
     struct Ball *next;
     struct Ball *before;
     float vel, acel;

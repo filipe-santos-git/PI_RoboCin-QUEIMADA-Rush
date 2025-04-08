@@ -113,7 +113,7 @@ void CreateDummy()
 
 }
 
-
+Color tone;  
 void DummyUpdate(float dt)
 {
     Rectangle rec = {dummy.pos.x, dummy.pos.y, dummy.width, dummy.height};
@@ -129,7 +129,7 @@ void DummyUpdate(float dt)
     }
 
     dummy.mana += 5 *dt;
-    if(GetTime() > 23 -(10 - var)  + dummy.start_attack) {last_a = N_AT; N_AT = GetRandomValue(1,3); dummy.start_attack = GetTime();}
+    if(GetTime() > 23 -(10 - var)  + dummy.start_attack) {last_a = N_AT; N_AT = GetRandomValue(1,3); dummy.start_attack = GetTime(); if(Blanky.dano == 0) {CreateCoracao();} Blanky.dano = 0;}
     else if(GetTime() > var + dummy.start_attack) 
     {dummy.mana = EscolherAtaque(N_AT, dummy.mana);}
     
@@ -139,37 +139,26 @@ void DummyUpdate(float dt)
     S_BallUpdate(dt);
     B_BallUpdate(dt);
 
-    Color tone;  
+    
     if(dummy.hp > 0) 
     {
-        Color Tone = {255/(health/dummy.hp), 255/(health/dummy.hp), 255/(health/dummy.hp), 255};
+        Color Tone = {255, 255/(health/dummy.hp), 255/(health/dummy.hp), 255};
         tone = Tone;
     }
     
     
-    if (GetTime() < dummy.hitted + 0.3)
-    {
-        dummy.atual = dummy.atordoado;
-    }
-    else
-    {
-        dummy.atual = dummy.nivel;
-    }
+    if (GetTime() < dummy.hitted + 0.3) {dummy.atual = dummy.atordoado;}
+    else {dummy.atual = dummy.nivel;}
 
 
 
     if(dummy.hp <= 0 && dummy.B == 1) 
     {
-        norm = BROWN;
-        met = DARKBROWN;
-        dummy.width = 90;
-        dummy.height = 90;
-        dummy.pos.x = S_l/2 - dummy.width/2;
-        dummy.pos.y = S_a/12 - dummy.height/2;
-        dummy.hp = 200;
-        //dummy.nivel = robocin_nivel_2
-        health = dummy.hp;
-        dummy.B++;
+        DeEspawn(); 
+        DeEspawnR_Ball(); 
+        DeEspawn_S(); 
+        DeEspawnB_Ball(); 
+        state = 'W';
     }
     if(dummy.hp <= 0 && dummy.B == 2)
     {
@@ -189,13 +178,15 @@ void DummyDraw()
 {
     char mana[10];
     sprintf(mana, "%i", dummy.hp);
-    DrawText(mana, S_l/2, S_a/2, 40, GRAY);
+    DrawText(mana, (S_l-200), S_a/7, 80, BLACK);
     //DrawRectangle(0,0, dummy.mana * 100, 30, PURPLE);
     float scale = 1.3f;
     float textureWidth = dummy.width * scale;
     float textureHeight = dummy.height * scale;
     Vector2 spritePosition =  {(dummy.pos.x - textureWidth/2), (dummy.pos.y - textureHeight/2)};
-    DrawTextureEx(dummy.atual, spritePosition, 0.0f, scale, WHITE);
+    DrawTextureEx(dummy.atual, spritePosition, 0.0f, scale, tone);
+    CoracaoDraw();
+    CoracaoDraw();
     BallDraw();
     S_BallDraw();
     B_BallDraw();

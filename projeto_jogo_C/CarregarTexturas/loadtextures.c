@@ -20,6 +20,9 @@ void Carregar(){
     tente_novamente = LoadTexture("assets/tente_novamente.png");
     menu_imagem = LoadTexture("assets/menu.png");
     game_over = LoadTexture("assets/game_over.png");
+    proxima_fase = LoadTexture("assets/proxima_fase.png");
+    tela_vitoria = LoadTexture("assets/tela_vitoria.png");
+    fundo= LoadTexture("assets/fundo.png");
 }
 
 void Descarregar(){
@@ -40,4 +43,7 @@ void Descarregar(){
     UnloadTexture(tente_novamente);
     UnloadTexture(menu_imagem);
     UnloadTexture(game_over);
+    UnloadTexture(proxima_fase);
+    UnloadTexture(tela_vitoria);
+    UnloadTexture(fundo);
 }

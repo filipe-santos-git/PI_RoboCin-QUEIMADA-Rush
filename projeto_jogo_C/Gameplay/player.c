@@ -35,6 +35,7 @@ void CreatePlayer()
     Blanky.ready = 1;
     Blanky.reflect = SKYBLUE;
     Blanky.dash_ready = 1;
+    Blanky.dash = LoadSound("assets/audios/effects/dash.wav");
     Blanky.hp.width = 10;
     Blanky.hp.height = 30;
     Blanky.hp.x = 625;
@@ -87,6 +88,7 @@ void PlayerUpdate(float dt)
 
     if((IsKeyPressed(340) || IsMouseButtonPressed(1)) && Blanky.dash_ready == 1)
     {
+        PlaySound(Blanky.dash);
         Blanky.dash_t = GetTime();
         Blanky.vel += 400; 
         Blanky.dash_ready = 0;

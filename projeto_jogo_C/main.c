@@ -9,6 +9,7 @@
 #include "Pause/Pause_Menu.h"
 #include "GameOver/GameOver.h"
 #include "CarregarTexturas/loadtextures.h"
+#include "assets/audios/audios_effects.c"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -26,6 +27,7 @@
 int main()
 {
     // Initialization
+    InitAudioDevice();
     //--------------------------------------------------------------------------------------
 
     InitWindow(S_l, S_a, "raylib_1");
@@ -55,7 +57,7 @@ int main()
     }
 
 
-   
+    CloseAudioDevice();
     Descarregar();
     CloseWindow();                
 

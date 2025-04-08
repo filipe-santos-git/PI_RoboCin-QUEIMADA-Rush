@@ -18,6 +18,9 @@ Texture sair;
 Texture tente_novamente;
 Texture menu_imagem;
 Texture game_over;
+Texture proxima_fase;
+Texture tela_vitoria;
+Texture fundo;
 
 
 
