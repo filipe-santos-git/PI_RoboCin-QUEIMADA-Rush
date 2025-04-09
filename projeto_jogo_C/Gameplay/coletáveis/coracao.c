@@ -10,15 +10,14 @@
 
 void DeEspawnCoracao()
 {
-    Coracao *temp = heart;
-    while(heart != NULL) 
+    Coracao *temp = hearts;
+    while(hearts != NULL) 
     { 
-        heart = heart->next;
+        hearts = hearts->next;
         free(temp);
-        temp = heart; 
+        temp = hearts; 
     }   
 }
-
 
 
 
@@ -27,23 +26,27 @@ void DeEspawnCoracao()
 void CreateCoracao()
 {
     Coracao *temp;
-    if(heart == NULL)
+    if(hearts == NULL)
     {
-        temp = heart;
-        heart = (Coracao *)malloc(sizeof(Coracao));
-        heart->next = temp;
+        temp = hearts;
+        hearts = (Coracao *)malloc(sizeof(Coracao));
+        hearts->next = temp;
     }
     else
     {
         temp = (Coracao *)malloc(sizeof(Coracao));
-        temp->next = heart;
-        heart ->before = temp;
-        heart = temp;
+        temp->next = hearts;
+        hearts ->before = temp;
+        hearts = temp;
     }
-    heart->y = GetRandomValue(arena.rec.y + 10, arena.rec.y + arena.rec.height - 10);
-    heart->x = GetRandomValue(arena.rec.x + 10, arena.rec.x + arena.rec.width - 10);
-    heart->H = 0.5;
-    heart->time = GetTime();
+    hearts->y = GetRandomValue(arena.rec.y + 10, arena.rec.y + arena.rec.height - 10);
+    hearts->x = GetRandomValue(arena.rec.x + 10, arena.rec.x + arena.rec.width - 10);
+    hearts->H = 0.5;
+    hearts->som_vida = LoadSound("assets/audios/effecs/vida.wav");
+    hearts->time = GetTime();
+    hearts->vel = GetRandomValue(-4, 4);
+    hearts->Hy = hearts->y;
+    hearts->ace = -0.01;
 }
 
 
@@ -52,11 +55,11 @@ void CreateCoracao()
 void CoracaoUpdate()
 {
     
-    Coracao *temp = heart;
+    Coracao *temp = hearts;
 
-    while(temp != NULL && heart != NULL)
+    while(temp != NULL && hearts != NULL)
     {
-        if(GetTime() >= heart->time + 7)
+        if(GetTime() >= hearts->time + 7)
         {
             DeEspawnCoracao();
         }
@@ -65,10 +68,12 @@ void CoracaoUpdate()
             Vector2 pos = {temp->x, temp->y};
             if(CheckCollisionCircleRec(pos, 15, Blanky.rec))
             {
+                //musica
+                PlaySound(hearts->som_vida);
                 Blanky.hp.width += temp->H;
-                if (temp == heart)
+                if (temp == hearts)
                 {
-                    heart = temp->next;
+                    hearts = temp->next;
                     free(temp);
                     temp = NULL;
                 }
@@ -82,7 +87,7 @@ void CoracaoUpdate()
                     free(despawn);
                 }
             }
-            if(temp != NULL) {temp = temp->next;} else {temp = heart;}
+            if(temp != NULL) {temp = temp->next;} else {temp = hearts;}
         }
     }
 }
@@ -91,10 +96,16 @@ void CoracaoUpdate()
 
 void CoracaoDraw()
 {
-    Coracao *temp = heart;
+    Coracao *temp = hearts;
     while(temp != NULL)
     {
-        DrawCircle(heart->x, heart->y, 15, PINK);
+        //DrawCircle(temp->x, temp->y, 15, PINK);
+        Vector2 pos = {temp->x - 22, temp->y - 27}; 
+        temp->vel += temp->ace;
+        if(temp->vel < -4) {temp->ace = -temp->ace;}
+        if(temp->vel > 4) {temp->ace =-temp->ace;}
+        pos.y += temp->vel;
+        DrawTextureEx(heart, pos, 0.0f,  0.5f, WHITE);
         temp = temp->next;
     }
 }

@@ -129,7 +129,7 @@ void DummyUpdate(float dt)
     }
 
     dummy.mana += 5 *dt;
-    if(GetTime() > 23 -(10 - var)  + dummy.start_attack) {last_a = N_AT; N_AT = GetRandomValue(1,3); dummy.start_attack = GetTime(); if(Blanky.dano == 0) {CreateCoracao();} Blanky.dano = 0;}
+    if(GetTime() > 23 -(10 - var)  + dummy.start_attack) {last_a = N_AT; N_AT = GetRandomValue(1,3); dummy.start_attack = GetTime(); if(Blanky.dano == 0) {CreateCoracao();CreateCoracao();CreateCoracao();CreateCoracao();CreateCoracao();} Blanky.dano = 0;}
     else if(GetTime() > var + dummy.start_attack) 
     {dummy.mana = EscolherAtaque(N_AT, dummy.mana);}
     
@@ -147,12 +147,12 @@ void DummyUpdate(float dt)
     }
     
     
-    if (GetTime() < dummy.hitted + 0.3) {dummy.atual = dummy.atordoado;}
-    else {dummy.atual = dummy.nivel;}
+    if (GetTime() < dummy.hitted + 0.3) {dummy.atual = dummy.atordoado;dummy.flag_move = 0;}
+    else {dummy.atual = dummy.nivel;dummy.flag_move = 1;}
 
 
 
-    if(dummy.hp <= 97 && dummy.B == 1) 
+    if(dummy.hp <= 0 && dummy.B == 1) 
     {
         DeEspawn(); 
         DeEspawnR_Ball(); 
@@ -160,13 +160,13 @@ void DummyUpdate(float dt)
         DeEspawnB_Ball(); 
         state = 'W';
     }
-    if(dummy.hp <= 197 && dummy.B == 2)
+    if(dummy.hp <= 0 && dummy.B == 2)
     {
         DeEspawn(); 
         DeEspawnR_Ball(); 
         DeEspawn_S(); 
         DeEspawnB_Ball(); 
-        state = 'M';
+        state = 'V';
     }
 
 
@@ -178,13 +178,23 @@ void DummyDraw()
 {
     char mana[10];
     sprintf(mana, "%i", dummy.hp);
+    //no dummy.c alterar o lugar onde a mana eh escrita
     DrawText(mana, (S_l-200), S_a/7, 80, BLACK);
     //DrawRectangle(0,0, dummy.mana * 100, 30, PURPLE);
     float scale = 1.3f;
     float textureWidth = dummy.width * scale;
     float textureHeight = dummy.height * scale;
     Vector2 spritePosition =  {(dummy.pos.x - textureWidth/2), (dummy.pos.y - textureHeight/2)};
-    DrawTextureEx(dummy.atual, spritePosition, 0.0f, scale, tone);
+    //efeito de tremer
+    float shakeIntensity = 5.0f;
+    if (dummy.flag_move == 0) {
+        spritePosition.x += (rand() % (int)(shakeIntensity * 2) - shakeIntensity); 
+        spritePosition.y += (rand() % (int)(shakeIntensity * 2) - shakeIntensity);  
+    }else{
+        spritePosition.x -= sin(GetTime() * 2) * 15;  
+        spritePosition.y -= -cos(GetTime() * 2) * 15;  
+    }
+    DrawTextureEx(dummy.atual, spritePosition, 0, scale, tone);
     CoracaoDraw();
     CoracaoDraw();
     BallDraw();

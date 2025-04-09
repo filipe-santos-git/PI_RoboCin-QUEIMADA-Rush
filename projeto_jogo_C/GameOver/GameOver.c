@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "General_Classes/Button.h"
 #include "General_Classes/Screen_Details.h"
+#include "Main_Menu/Main_Menu.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -48,15 +49,31 @@ void GameOverUpdate()
 
 void GameOverDraw()
 {
+    Vector2 mouse = GetMousePosition();
+    
     ClearBackground(BLACK);
     float scale = 2.0f;
     Vector2 position = {0, 0};
+
     DrawTextureEx(menu.game_over, position, 0.0f, scale, WHITE);
     float scale2 = 0.5f;
     Vector2 position2 = {main_menu.rec.x, main_menu.rec.y};
-    DrawTextureEx(menu.sair, position2, 0.0f, scale2, WHITE);
-    float scale3 = 0.5f;
+    Rectangle r3 = {main_menu.rec.x,main_menu.rec.y,main_menu.rec.width,main_menu.rec.height};
+    if(CheckCollisionPointRec(mouse, r3)){
+        DrawTextureEx(proxima_fase, position2, 0.0f, scale2, WHITE);//botao_sair_pressionado
+    }
+    else{
+        DrawTextureEx(menu.sair, position2, 0.0f, scale2, WHITE);
+    }
+    
     Vector2 position3 = {over_resume.rec.x, over_resume.rec.y};
-    DrawTextureEx(menu.tente_novamente, position3, 0.0f, scale3, WHITE);
+    Rectangle r4 = {over_resume.rec.x,over_resume.rec.y,over_resume.rec.width,over_resume.rec.height};
+    if(CheckCollisionPointRec(mouse, r4)){
+        DrawTextureEx(proxima_fase, position3, 0.0f, scale2, WHITE);//botao_sair_pressionado
+    }
+    else{
+        DrawTextureEx(tente_novamente, position3, 0.0f, scale2, WHITE);
+    }
+    //DrawTextureEx(menu.tente_novamente, position3, 0.0f, scale3, WHITE);
     DrawText(arena.time, S_l/2 -60, S_a/1.7, 200, RAYWHITE);
 }

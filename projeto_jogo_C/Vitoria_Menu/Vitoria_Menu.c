@@ -1,54 +1,55 @@
 #include "raylib.h"
-#include "Vtoria_Menu.h"
 #include "General_Classes/Screen_Details.h"
 #include "General_Classes/Button.h"
 #include "State_Manager.h"
+#include "Vitoria_Menu.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-Vitoria vitoria;
 
 
-void MenuButton()
+void CreateVitoria()
 {
-    vitoria.menu_button = proxima_fase;
-    vitoria.menu_button.rec.x = S_l/2;
-    vitoria.menu_button.rec.y = S_a/1.5;
-    vitoria.menu_button.rec.height = 200;
-    vitoria.menu_button.rec.width = 600;
-    vitoria.menu_button.rec.x -= vitoria.menu_button.rec.width/2;
-    vitoria.menu_button.tx = vitoria.menu_button.rec.x + vitoria.menu_button.rec.width/2 - 55;
-    vitoria.menu_button.ty = vitoria.menu_button.rec.y + vitoria.menu_button.rec.height/4;
-    vitoria.tela_vitoria = tela_vitoria;
-    vitoria.menu_button.text_color = RAYWHITE;
-    vitoria.menu_button.color = BLACK;
-    Color b, t;
-    b = vitoria.menu_button.color;
-    t = vitoria.menu_button.text_color;
+    strcpy(victory.menu_button.text, "Menu");
 
-    Mouse_Button(&vitoria.menu_button, 'M', b, t);
+    victory.menu_button.start1 = botao_menu;
+    victory.menu_button.start2 = botao_menu_pressionando;
+    victory.menu_button.rec.x = S_l/2-600;
+    victory.menu_button.rec.y = S_a/1.5;
+    victory.menu_button.rec.height = 200;
+    victory.menu_button.rec.width = 600;
+    victory.menu_button.rec.x -= victory.menu_button.rec.width/2;
+    victory.menu_button.tx = victory.menu_button.rec.x + victory.menu_button.rec.width/2 - 55;
+    victory.menu_button.ty = victory.menu_button.rec.y + victory.menu_button.rec.height/4;
+    victory.tela_vitoria = tela_vitoria;
+    victory.menu_button.text_color = RAYWHITE;
+    victory.menu_button.color = BLACK;    
 }
 
 
 void VitoriaUpdate()
 {
-    vitoria.tela_vitoria = tela_vitoria;
-    vitoria.BackGround_color = BLACK;
-    vitoria.Tiltle_color = RAYWHITE;
-    MenuButton();
+    Color b, t;
+    b = victory.menu_button.color;
+    t = victory.menu_button.text_color;
+    victory.tela_vitoria = tela_vitoria;
+    victory.BackGround_color = BLACK;
+    victory.Tiltle_color = RAYWHITE;
+    Mouse_Button(&victory.menu_button, 'M', b, t);
 }
 
 void VitoriaDraw()
 {
-    ClearBackground(vitoria.BackGround_color);
+    ClearBackground(victory.BackGround_color);
     float scale = 2.0f;
     Vector2 position = {0, 0};
-    DrawTextureEx(vitoria.tela_vitoria, position, 0.0f, scale, WHITE);
+    DrawTextureEx(victory.tela_vitoria, position, 0.0f, scale, WHITE);
     Vector2 mouse = GetMousePosition();
-    if (CheckCollisionPointRec(mouse, vitoria.menu_button.rec)) {
-        DrawTexture(proxima_fase, vitoria.menu_button.rec.x, vitoria.menu_button.rec.y, WHITE);
+    Rectangle r1 ={ S_l/2-900, S_a/1.5-5, 500, 240};
+    if (CheckCollisionPointRec(mouse, r1)) {
+        DrawTexture(botao_menu_pressionando, victory.menu_button.rec.x, victory.menu_button.rec.y, WHITE);
     } else {
-        DrawTexture(proxima_fase, vitoria.menu_button.rec.x, vitoria.menu_button.rec.y, WHITE);
+        DrawTexture(botao_menu, victory.menu_button.rec.x, victory.menu_button.rec.y, WHITE);
     }
 }

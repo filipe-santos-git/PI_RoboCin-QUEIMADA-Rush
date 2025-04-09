@@ -2,22 +2,13 @@
 #include "player.h"
 #include "Arena.h"
 #include "raymath.h"
+#include "General_Classes/Screen_Details.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 
-
-
-
-
-
-
 double time;
-
-
-
-
 
 
 void CreatePlayer()
@@ -43,6 +34,7 @@ void CreatePlayer()
     Blanky.hp.color = LIME;
     time = GetTime();
     Blanky.vel = 300;
+    Blanky.tone = WHITE;
 
     
 
@@ -59,12 +51,13 @@ void GreenState()
         Blanky.time = GetTime();
         Blanky.hit = 0;
         Blanky.ready = 0;
+        Blanky.texture = jogador_ataque;
     }
 
     else if(Blanky.hit && GetTime() > Blanky.hitted + 0.3 )
-    {Blanky.color = BLUE; Blanky.hit = 0;}
+    {Blanky.color = BLUE; Blanky.hit = 0; Blanky.texture = jogador; Blanky.tone = WHITE;}
     else if(Blanky.hit != 1 && Blanky.now > Blanky.time + 0.5)
-    {Blanky.color = BLUE;}
+    {Blanky.color = BLUE; Blanky.texture = jogador; Blanky.tone = WHITE;}
     if(Blanky.now > Blanky.time + 0.9) {Blanky.ready = 1;}
 }
 
@@ -126,7 +119,11 @@ void PlayerDraw()
     DrawRectangle(Blanky.hp.x, Blanky.hp.y- 30, a * 150, Blanky.hp.height, Blanky.reflect);
     DrawRectangle(Blanky.hp.x, Blanky.hp.y, Blanky.hp.width *  70, Blanky.hp.height, Blanky.hp.color);
     DrawRectangle(Blanky.pos.x, Blanky.pos.y, Blanky.width, Blanky.height, Blanky.color);
-    
+    Vector2 pos = {Blanky.pos.x - 6, Blanky.pos.y - 6};
+    char buffer[20];
+    sprintf(buffer, "%0.f", (Blanky.hp.width)*2);
+    DrawText(buffer, S_l - 455, S_a / 7, 80, BLACK);
+    DrawTextureEx(Blanky.texture, pos, 0.0f, 0.35f, Blanky.tone);
 }
 
 

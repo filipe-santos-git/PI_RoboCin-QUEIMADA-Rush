@@ -11,9 +11,10 @@
 typedef struct Coracao 
 {
     float x, y, H;
-    Texture coracao;
     struct Coracao *next, *before;
     double time;
+    float vel, Hy, ace;
+    Sound som_vida;
 
 
 } Coracao;

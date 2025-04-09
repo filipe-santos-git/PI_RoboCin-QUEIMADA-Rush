@@ -15,6 +15,9 @@ typedef struct Menu
 {
     Rectangle rec;
     Button button;
+    Button instruction;
+    Button creditos;
+    Button historia;
     char Title[100];
     Texture menu;
     Texture game_over;

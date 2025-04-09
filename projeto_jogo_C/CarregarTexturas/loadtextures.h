@@ -20,8 +20,29 @@ Texture menu_imagem;
 Texture game_over;
 Texture proxima_fase;
 Texture tela_vitoria;
+Texture tela_win;
 Texture fundo;
 Texture heart;
+Texture robocin_nivel_2;
+Texture next_stage;
+Texture next_stage_pressionado;
+Texture jogador_ataque;
+Texture jogador;
+Texture botao_menu;
+Texture botao_menu_pressionando;
+Texture tela_instrucoes;
+Texture instrucoes;
+Texture instrucoes_pressionado;
+Texture creditos;
+Texture creditos_pressionado;
+Texture historia;
+Texture historia_pressionado;
+Texture tela_creditos;
+Texture historia_1, historia_2, historia_3, historia_4;
+Texture seta;
+Texture seta_pressionada;
+Music musica;
+
 
 
 

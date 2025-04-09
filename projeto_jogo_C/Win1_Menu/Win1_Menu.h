@@ -1,5 +1,5 @@
-#ifndef MAIN
-#define MAIN
+#ifndef WIN
+#define WIN
 
 #include "raylib.h"
 #include "General_Classes/Button.h"
@@ -11,20 +11,19 @@
 
 
 
-typedef struct Menu
+typedef struct Win
 {
     Rectangle rec;
-    Button button;
+    Button menu_button;
     char Title[100];
-    Texture menu;
-    Texture game_over;
+    Texture tela_win;
     Texture start1;
     Texture start2;
     Texture sair;
     Texture tente_novamente;
     Color BackGround_color;
     Color Tiltle_color;
-}Menu;
+}Win;
 
 
 

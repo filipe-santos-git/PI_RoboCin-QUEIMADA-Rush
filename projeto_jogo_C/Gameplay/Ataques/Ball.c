@@ -24,6 +24,8 @@ void CheckState()
         Blanky.hp.width -= 0.5 ;
         Blanky.hitted = GetTime();
         Blanky.color = RAYWHITE;
+        Blanky.tone.g = 110;
+        Blanky.tone.b = 110;
         Blanky.hit = 1;
         Blanky.dano = 1;
     }

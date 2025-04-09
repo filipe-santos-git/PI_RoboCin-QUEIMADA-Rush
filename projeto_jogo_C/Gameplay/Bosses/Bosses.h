@@ -20,6 +20,7 @@ typedef struct Boss
     Texture nivel;
     Texture atual;
     int hp, hit;
+    int flag_move;
     double hitted, mana;
 
     double start_attack;

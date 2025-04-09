@@ -3,10 +3,13 @@
 #include "Gameplay/Arena.c"
 #include "State_Manager.h"
 #include "General_Classes/Screen_Details.h"
-#include "Main_menu/Main_Menu.c"
-#include "Win1_menu/Win1_Menu.c"
-#include "Vitoria_menu/Vitoria_Menu.c"
+#include "Main_Menu/Main_Menu.c"
+#include "Win1_Menu/Win1_Menu.c"
+#include "Vitoria_Menu/Vitoria_Menu.c"
+#include "Historia_Menu/Historia_Menu.c"
 #include "Pause/Pause_Menu.c"
+#include "Instruction_Menu/Instruction_Menu.c"
+#include "Creditos_Menu/Creditos_Menu.c"
 #include "Gameplay/Bosses/Bosses.h"
 #include "Gameplay/Ataques/Ball.h"
 #include "GameOver/GameOver.h"
@@ -18,14 +21,18 @@ char State;
 int G_i = 0;
 
 
+
 int start_game = 0;
 void ScreenUpdate(float dt)
 {
+    
+    
     State = state;
     
     switch(State)
     {
         case'M':
+            StopMusicStream(musica);
             ShowCursor();
             SetExitKey(256);
             MenuUpdate();
@@ -33,12 +40,15 @@ void ScreenUpdate(float dt)
 
             break;
         case'G':
+            PlayMusicStream(musica);
+            UpdateMusicStream(musica);
             HideCursor();
             SetMousePosition(S_l, 0);
             sprintf(arena.time, "%.f", GetTime() - arena.TimeGame);
             if(start_game == 0) 
             {
                 dummy.hp = 100;
+                dummy.nivel = robocin_nivel_1;   
                 health = dummy.hp;
                 Blanky.hp.width = 10;
                 dummy.B = 1; 
@@ -54,7 +64,7 @@ void ScreenUpdate(float dt)
                 norm = BROWN;
                 met = DARKBROWN;
                 dummy.hp = 200;
-                //dummy.nivel = robocin_nivel_2       // adicionar a textura para o robocin nivel 2!!
+                dummy.nivel = robocin_nivel_2;     // adicionar a textura para o robocin nivel 2!!
                 health = dummy.hp;
                 Blanky.hp.width = 10;
                 dummy.B = 2; 
@@ -68,7 +78,7 @@ void ScreenUpdate(float dt)
             SetExitKey(261);
             if(IsKeyPressed(256)) {state = 'P';}
             PlayerUpdate(dt);
-            if(Blanky.hp.width <= 0) {DeEspawn(); DeEspawnR_Ball(); DeEspawn_S(); DeEspawnB_Ball(); state = 'O';}
+            if(Blanky.hp.width <= 0) {DeEspawn(); DeEspawnR_Ball(); DeEspawn_S(); DeEspawnB_Ball(); state = 'O'; start_game = 0;}
             CoracaoUpdate();
             DummyUpdate(dt);
             break;
@@ -79,6 +89,7 @@ void ScreenUpdate(float dt)
             PauseUpdate();
             break;
         case'O':
+            StopMusicStream(musica);
             ShowCursor();
             if(IsKeyPressed(256)) {state = 'M';}
             if(start_game==1){ start_game=0;}
@@ -100,6 +111,22 @@ void ScreenUpdate(float dt)
             SetExitKey(256);
             VitoriaUpdate();
             break;
+        case'I':
+            ShowCursor();
+            SetExitKey(256);
+            InstructionUpdate();
+            break;
+        case'C':
+            ShowCursor();
+            SetExitKey(256);
+            CreditosUpdate();
+            break;
+        case'H':
+            ShowCursor();
+            SetExitKey(256);
+            HistoriaUpdate();
+            break;
+
         default: break;
 
     }
@@ -131,7 +158,16 @@ void ScreenDraw()
             break;
         case'V':
             VitoriaDraw();
-            break;           
+            break;
+        case'I':
+            InstructionDraw();
+            break;
+        case'C':
+            CreditosDraw();
+            break;
+        case'H':
+            HistoriaDraw();
+            break;          
         default: break;
     }
 }

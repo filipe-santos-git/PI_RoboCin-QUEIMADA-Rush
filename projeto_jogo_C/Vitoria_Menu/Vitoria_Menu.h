@@ -21,6 +21,6 @@ typedef struct Vitoria
     Color BackGround_color;
     Color Tiltle_color;
 }Vitoria;
+Vitoria victory;
 
-#include "Vitoria_Menu.c"
 #endif

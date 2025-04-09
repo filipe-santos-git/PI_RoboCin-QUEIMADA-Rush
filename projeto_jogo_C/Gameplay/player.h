@@ -2,6 +2,7 @@
 #define PLAYER
 #include "raylib.h"
 #include "HP.h"
+#include "CarregarTexturas/loadtextures.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -22,6 +23,8 @@ typedef struct Player
     Sound dash;
     double hitted;
     int hit, dash_ready, dano;
+    Texture texture;
+    Color tone;
 
     
 }Player;

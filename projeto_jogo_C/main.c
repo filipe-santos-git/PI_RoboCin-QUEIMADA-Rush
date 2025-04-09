@@ -9,7 +9,9 @@
 #include "Pause/Pause_Menu.h"
 #include "GameOver/GameOver.h"
 #include "CarregarTexturas/loadtextures.h"
+#include "Vitoria_Menu/Vitoria_Menu.h"
 #include "assets/audios/audios_effects.c"
+#include "Historia_Menu/Historia_Menu.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -28,8 +30,9 @@ int main()
 {
     // Initialization
     InitAudioDevice();
-    //--------------------------------------------------------------------------------------
 
+    //--------------------------------------------------------------------------------------
+    
     InitWindow(S_l, S_a, "raylib_1");
     //ToggleBorderlessWindowed();
     //SetTargetFPS(300);
@@ -37,8 +40,10 @@ int main()
     CreateGameOver();
     CreateDummy();
     CreatePause();
+    CreateVitoria();
     CreateArena();
     CreatePlayer();
+    
 
 
 
@@ -46,7 +51,6 @@ int main()
     while (!WindowShouldClose())    
     {
         float dt = GetFrameTime();
-
         ScreenUpdate(dt);
 
         BeginDrawing();
@@ -56,7 +60,7 @@ int main()
     
     }
 
-
+    // unloadaudio();
     CloseAudioDevice();
     Descarregar();
     CloseWindow();                
