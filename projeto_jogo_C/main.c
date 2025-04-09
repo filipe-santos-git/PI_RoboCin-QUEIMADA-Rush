@@ -10,32 +10,26 @@
 #include "GameOver/GameOver.h"
 #include "CarregarTexturas/loadtextures.h"
 #include "Vitoria_Menu/Vitoria_Menu.h"
-#include "assets/audios/audios_effects.c"
+#include "assets/audios/audios_effects.h"
 #include "Historia_Menu/Historia_Menu.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 
-//----------------------------------------------------------------------------------
-// Local Functions Declaration
-//----------------------------------------------------------------------------------
 
-
-
-//----------------------------------------------------------------------------------
-// Main entry point
-//----------------------------------------------------------------------------------
 int main()
 {
     // Initialization
-    InitAudioDevice();
+    
 
     //--------------------------------------------------------------------------------------
     
-    InitWindow(S_l, S_a, "raylib_1");
+    InitWindow(S_l, S_a, "ROBOCIN QUEIMADA RUSH!");
+    InitAudioDevice();
     //ToggleBorderlessWindowed();
     //SetTargetFPS(300);
+    LoadAudios();
     Carregar();
     CreateGameOver();
     CreateDummy();
@@ -55,12 +49,12 @@ int main()
 
         BeginDrawing();
             ScreenDraw();
-            DrawFPS(10, 10);
+            //DrawFPS(10, 10);
         EndDrawing();
     
     }
 
-    // unloadaudio();
+    UnloadAudios();
     CloseAudioDevice();
     Descarregar();
     CloseWindow();                

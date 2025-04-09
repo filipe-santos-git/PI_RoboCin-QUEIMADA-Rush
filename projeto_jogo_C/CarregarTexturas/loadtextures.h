@@ -41,6 +41,10 @@ Texture tela_creditos;
 Texture historia_1, historia_2, historia_3, historia_4;
 Texture seta;
 Texture seta_pressionada;
+Texture sair;
+Texture sair_pressionado;
+Texture restart;
+Texture restart_pressionado;
 Music musica;
 
 

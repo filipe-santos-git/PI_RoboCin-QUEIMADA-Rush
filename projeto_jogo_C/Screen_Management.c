@@ -26,13 +26,13 @@ int start_game = 0;
 void ScreenUpdate(float dt)
 {
     
+    if(state != 'G' && state != 'W' && state != 'P') {StopMusicStream(G_musica);}
     
     State = state;
     
     switch(State)
     {
         case'M':
-            StopMusicStream(musica);
             ShowCursor();
             SetExitKey(256);
             MenuUpdate();
@@ -40,13 +40,13 @@ void ScreenUpdate(float dt)
 
             break;
         case'G':
-            PlayMusicStream(musica);
-            UpdateMusicStream(musica);
+            
             HideCursor();
             SetMousePosition(S_l, 0);
             sprintf(arena.time, "%.f", GetTime() - arena.TimeGame);
             if(start_game == 0) 
             {
+                PlayMusicStream(G_musica);
                 dummy.hp = 100;
                 dummy.nivel = robocin_nivel_1;   
                 health = dummy.hp;
@@ -61,6 +61,7 @@ void ScreenUpdate(float dt)
             }
             if(start_game == 2)
             {
+                ResumeMusicStream(G_musica);
                 norm = BROWN;
                 met = DARKBROWN;
                 dummy.hp = 200;
@@ -75,12 +76,16 @@ void ScreenUpdate(float dt)
                 dummy.pos.y = S_a/12;
                 dummy.pos.x -= dummy.width/2;
             }
+
+            UpdateMusicStream(G_musica);
             SetExitKey(261);
             if(IsKeyPressed(256)) {state = 'P';}
             PlayerUpdate(dt);
             if(Blanky.hp.width <= 0) {DeEspawn(); DeEspawnR_Ball(); DeEspawn_S(); DeEspawnB_Ball(); state = 'O'; start_game = 0;}
             CoracaoUpdate();
             DummyUpdate(dt);
+
+            if(GetMusicTimePlayed(G_musica) == GetMusicTimeLength(G_musica)) { StopMusicStream(G_musica); PlayMusicStream(G_musica);}
             break;
         case'P':
             ShowCursor();
@@ -100,6 +105,7 @@ void ScreenUpdate(float dt)
             break;
             //Win_1fase
         case'W':
+            PauseMusicStream(G_musica);
             ShowCursor();
             SetExitKey(256);
             Win1Update();

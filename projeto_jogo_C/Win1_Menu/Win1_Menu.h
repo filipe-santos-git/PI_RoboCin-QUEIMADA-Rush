@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "CarregarTexturas/loadtextures.h"
+#include "assets/audios/audios_effects.h"
 
 
 
@@ -20,6 +21,7 @@ typedef struct Win
     Texture start1;
     Texture start2;
     Texture sair;
+    Sound Crowd;
     Texture tente_novamente;
     Color BackGround_color;
     Color Tiltle_color;

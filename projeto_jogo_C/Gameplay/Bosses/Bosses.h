@@ -6,6 +6,7 @@
 #include <string.h>
 #include "Gameplay/coletáveis/coracao.h"
 #include "CarregarTexturas/loadtextures.h"
+#include "assets/audios/audios_effects.h"
 
 typedef struct Boss
 {
@@ -19,6 +20,7 @@ typedef struct Boss
     Texture atordoado;
     Texture nivel;
     Texture atual;
+    Sound Boss_dmg;
     int hp, hit;
     int flag_move;
     double hitted, mana;

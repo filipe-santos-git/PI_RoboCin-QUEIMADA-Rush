@@ -26,7 +26,7 @@ void CreatePlayer()
     Blanky.ready = 1;
     Blanky.reflect = SKYBLUE;
     Blanky.dash_ready = 1;
-    Blanky.dash = LoadSound("assets/audios/effects/dash.wav");
+    Blanky.dash = dash;
     Blanky.hp.width = 10;
     Blanky.hp.height = 30;
     Blanky.hp.x = 625;
@@ -116,8 +116,8 @@ void PlayerDraw()
     double a;
     a = Blanky.now - Blanky.time;
     if(a> 0.9) { a = 0.9; Blanky.reflect = GOLD;} else {Blanky.reflect = SKYBLUE;}
-    DrawRectangle(Blanky.hp.x, Blanky.hp.y- 30, a * 150, Blanky.hp.height, Blanky.reflect);
-    DrawRectangle(Blanky.hp.x, Blanky.hp.y, Blanky.hp.width *  70, Blanky.hp.height, Blanky.hp.color);
+    //DrawRectangle(Blanky.hp.x, Blanky.hp.y- 30, a * 150, Blanky.hp.height, Blanky.reflect);
+    //DrawRectangle(Blanky.hp.x, Blanky.hp.y, Blanky.hp.width *  70, Blanky.hp.height, Blanky.hp.color);
     DrawRectangle(Blanky.pos.x, Blanky.pos.y, Blanky.width, Blanky.height, Blanky.color);
     Vector2 pos = {Blanky.pos.x - 6, Blanky.pos.y - 6};
     char buffer[20];

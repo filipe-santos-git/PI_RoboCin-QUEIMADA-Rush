@@ -105,7 +105,10 @@ void HistoriaDraw()
 {
 
 
-
+    Color b, t;
+    b = historias.h_menu_button.color;
+    t = historias.h_menu_button.text_color;
+    Mouse_Button(&historias.h_menu_button, 'M', b, t);
     ClearBackground(historias.BackGround_color);
     float scale = 2.0f;
     Vector2 position = {0, 0};
@@ -119,7 +122,7 @@ void HistoriaDraw()
         DrawTextureEx(botao_menu, menuzinhoh, 0, 0.4, WHITE);
     }
     Vector2 setinha = {S_l-60 - historias.h_seta_button.rec.width, S_a - 150};
-    Rectangle r9 = {S_l-60 - historias.h_seta_button.rec.width, (S_a - 160), botao_menu.width*0.4, botao_menu.height*0.4};
+    Rectangle r9 = {S_l-60 - historias.h_seta_button.rec.width, (S_a - 160), botao_menu.width*0.2-20, botao_menu.height*0.4-20};
     if (CheckCollisionPointRec(mouse, r9)) {
         DrawTextureEx(seta_pressionada, setinha, 0, 0.4 , WHITE);
     } else {

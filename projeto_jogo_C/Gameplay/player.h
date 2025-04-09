@@ -3,6 +3,7 @@
 #include "raylib.h"
 #include "HP.h"
 #include "CarregarTexturas/loadtextures.h"
+#include "assets/audios/audios_effects.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

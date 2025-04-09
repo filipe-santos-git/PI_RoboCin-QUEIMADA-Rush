@@ -58,21 +58,21 @@ void GameOverDraw()
     DrawTextureEx(menu.game_over, position, 0.0f, scale, WHITE);
     float scale2 = 0.5f;
     Vector2 position2 = {main_menu.rec.x, main_menu.rec.y};
-    Rectangle r3 = {main_menu.rec.x,main_menu.rec.y,main_menu.rec.width,main_menu.rec.height};
+    Rectangle r3 = {main_menu.rec.x,main_menu.rec.y,main_menu.rec.width-50,main_menu.rec.height+18};
     if(CheckCollisionPointRec(mouse, r3)){
-        DrawTextureEx(proxima_fase, position2, 0.0f, scale2, WHITE);//botao_sair_pressionado
+        DrawTextureEx(sair_pressionado, position2, 0.0f, scale2, WHITE);//botao_sair_pressionado
     }
     else{
-        DrawTextureEx(menu.sair, position2, 0.0f, scale2, WHITE);
+        DrawTextureEx(sair, position2, 0.0f, scale2, WHITE);
     }
     
     Vector2 position3 = {over_resume.rec.x, over_resume.rec.y};
-    Rectangle r4 = {over_resume.rec.x,over_resume.rec.y,over_resume.rec.width,over_resume.rec.height};
+    Rectangle r4 = {over_resume.rec.x,over_resume.rec.y,over_resume.rec.width-50,over_resume.rec.height+18};
     if(CheckCollisionPointRec(mouse, r4)){
-        DrawTextureEx(proxima_fase, position3, 0.0f, scale2, WHITE);//botao_sair_pressionado
+        DrawTextureEx(restart_pressionado, position3, 0.0f, scale2, WHITE);//botao_sair_pressionado
     }
     else{
-        DrawTextureEx(tente_novamente, position3, 0.0f, scale2, WHITE);
+        DrawTextureEx(restart, position3, 0.0f, scale2, WHITE);
     }
     //DrawTextureEx(menu.tente_novamente, position3, 0.0f, scale3, WHITE);
     DrawText(arena.time, S_l/2 -60, S_a/1.7, 200, RAYWHITE);

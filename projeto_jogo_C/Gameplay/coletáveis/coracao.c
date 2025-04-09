@@ -4,6 +4,7 @@
 #include <string.h>
 #include "coracao.h"
 #include "Gameplay/player.h"
+#include "assets/audios/audios_effects.h"
 
 
 
@@ -69,7 +70,7 @@ void CoracaoUpdate()
             if(CheckCollisionCircleRec(pos, 15, Blanky.rec))
             {
                 //musica
-                PlaySound(hearts->som_vida);
+                PlaySound(hearty);
                 Blanky.hp.width += temp->H;
                 if (temp == hearts)
                 {

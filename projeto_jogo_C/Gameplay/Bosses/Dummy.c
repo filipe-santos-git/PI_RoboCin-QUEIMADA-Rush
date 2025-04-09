@@ -9,6 +9,7 @@
 #include <string.h>
 #include "State_Manager.h"
 
+
 Color norm = RED, met = ORANGE;
 
 double EscolherAtaque(int num,  double mana)
@@ -103,6 +104,7 @@ void CreateDummy()
     dummy.ataque = 0;
     dummy.height = 110;
     dummy.width = 300;
+    dummy.Boss_dmg = Boss_dmg;
     dummy.pos.x -= dummy.width/2;
     dummy.pos.y -= dummy.height/2;
     dummy.hp = 100;
@@ -147,7 +149,7 @@ void DummyUpdate(float dt)
     }
     
     
-    if (GetTime() < dummy.hitted + 0.3) {dummy.atual = dummy.atordoado;dummy.flag_move = 0;}
+    if (GetTime() < dummy.hitted + 0.3) {dummy.atual = dummy.atordoado;dummy.flag_move = 0;PlaySound(dummy.Boss_dmg);}
     else {dummy.atual = dummy.nivel;dummy.flag_move = 1;}
 
 
@@ -159,6 +161,7 @@ void DummyUpdate(float dt)
         DeEspawn_S(); 
         DeEspawnB_Ball(); 
         state = 'W';
+        PlaySound(Crowd);
     }
     if(dummy.hp <= 0 && dummy.B == 2)
     {

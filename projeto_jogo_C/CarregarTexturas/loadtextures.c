@@ -1,6 +1,5 @@
 #include "raylib.h"
 #include "CarregarTexturas/loadtextures.h"
-#include "assets/audios/audios_effects.c"
 
 
 void Carregar(){
@@ -47,7 +46,10 @@ void Carregar(){
     historia_4 = LoadTexture("assets/historia_4.png");
     seta = LoadTexture("assets/seta.png");
     seta_pressionada = LoadTexture("assets/seta_pressionada.png");
-    //musica = LoadMusicStream("assets/audios/musica-main.mp3");
+    sair = LoadTexture("assets/sair.png");
+    sair_pressionado = LoadTexture("assets/sair_pressionado.png");
+    restart = LoadTexture("assets/restart.png");
+    restart_pressionado = LoadTexture("assets/restart_pressionado.png");
 
 
 
@@ -99,8 +101,5 @@ void Descarregar(){
     UnloadTexture(seta);
     UnloadTexture(seta_pressionada);
 
-
-
-   // UnloadMusicStream(musica);
     
 }
